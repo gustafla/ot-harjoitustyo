@@ -40,4 +40,18 @@ public class MaksukorttiTest {
         assertFalse(kortti.otaRahaa(11));
         assertEquals(kortti.saldo(), 10);
     }
+    
+    @Test
+    public void toStringToimii() {
+        assertEquals(kortti.toString(), "saldo: 0.10");
+        kortti.lataaRahaa(5);
+        assertEquals(kortti.toString(), "saldo: 0.15");
+    }
+    
+    @Test
+    public void toStringNayttaaEurotJaSentit() {
+        kortti.lataaRahaa(120);
+        assertEquals(kortti.toString(), "saldo: 1.30");
+
+    }
 }
