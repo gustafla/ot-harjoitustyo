@@ -1,0 +1,105 @@
+commit 305b1de9ef8445202c7fb7328e2e1ce56f576cba
+Author: Lauri Gustafsson <luutifa@jkry.org>
+Date:   Tue Mar 19 14:52:26 2019 +0200
+
+    poista tiedosto file 1 ja uudelleennimeä file 2
+
+ tiedostoja/file2             | 0
+ tiedostoja/{file1 => file22} | 0
+ 2 files changed, 0 insertions(+), 0 deletions(-)
+
+commit a524ae8b9c02175603dff0dc877752c05541be8b
+Author: Lauri Gustafsson <luutifa@jkry.org>
+Date:   Tue Mar 19 14:47:52 2019 +0200
+
+    lisää tiedostoja
+
+ tiedostoja/file1 | 0
+ tiedostoja/file2 | 0
+ tiedostoja/file3 | 0
+ 3 files changed, 0 insertions(+), 0 deletions(-)
+
+commit 411317780d5a8e2c1dd57ec5313ad7354caa8454
+Author: Lauri Gustafsson <luutifa@jkry.org>
+Date:   Tue Mar 19 14:44:32 2019 +0200
+
+    git add -p harjoittelua
+
+ eka.txt    | 3 +--
+ kolmas.txt | 2 ++
+ 2 files changed, 3 insertions(+), 2 deletions(-)
+
+commit 17aa6bdc2116b2b9f43fa7ff60675cdd90cbb8f7
+Author: Lauri Gustafsson <luutifa@jkry.org>
+Date:   Tue Mar 19 14:42:38 2019 +0200
+
+    Uudelleennimetty tiedosto.txt eka.txt:ksi
+
+ tiedosto.txt => eka.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit c7796dd053dd1728d51cfff9a2e2407ce6e842b7
+Author: Lauri Gustafsson <luutifa@jkry.org>
+Date:   Tue Mar 19 14:41:48 2019 +0200
+
+    Poista toinen.txt
+
+ toinen.txt | 1 -
+ 1 file changed, 1 deletion(-)
+
+commit 3ec0587268c179dae49a00c72a0aa1a07d11d527
+Author: Lauri Gustafsson <luutifa@jkry.org>
+Date:   Tue Mar 19 14:39:25 2019 +0200
+
+    poista teksti
+
+ tiedosto.txt | 1 -
+ 1 file changed, 1 deletion(-)
+
+commit ed1c1d55526a7154f5d0f2cfb5910859ccc2b599
+Author: Lauri Gustafsson <luutifa@jkry.org>
+Date:   Tue Mar 19 14:38:23 2019 +0200
+
+    Lisää tiedosto.txt:n
+
+ tiedosto.txt | 3 +++
+ 1 file changed, 3 insertions(+)
+
+commit e55ffec61632f12bb33d4e28107f5d16d960013f
+Author: Lauri Gustafsson <luutifa@jkry.org>
+Date:   Tue Mar 19 14:34:59 2019 +0200
+
+    Muutoksia
+
+ kolmas.txt      | 2 +-
+ stuff/stuff.txt | 1 +
+ toinen.txt      | 1 +
+ 3 files changed, 3 insertions(+), 1 deletion(-)
+
+commit 5a3fec7d9205789b8e96a799ba0ad09c0c06fc48
+Author: Lauri Gustafsson <luutifa@jkry.org>
+Date:   Tue Mar 19 14:33:38 2019 +0200
+
+    kolmas.txt lisätty
+
+ kolmas.txt | 1 +
+ 1 file changed, 1 insertion(+)
+
+commit 45d7e96beb31f7ab5f7541e35e6d6cc971427c4d
+Author: Lauri Gustafsson <luutifa@jkry.org>
+Date:   Tue Mar 19 14:32:34 2019 +0200
+
+    muutos ja lisäys
+
+ tiedosto.txt | 1 +
+ toinen.txt   | 0
+ 2 files changed, 1 insertion(+)
+
+commit 8901a21bd2fb617521c0b862bafacf9fdba9d259
+Author: Lauri Gustafsson <luutifa@jkry.org>
+Date:   Tue Mar 19 14:29:10 2019 +0200
+
+    tiedosto.txt luotu
+
+ tiedosto.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
