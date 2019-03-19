@@ -54,4 +54,16 @@ public class KassapaateTest {
         assertEquals(kp.syoMaukkaasti(1000), 1000-400);
         assertEquals(kp.kassassaRahaa(), 100000+400);
     }
+    
+    @Test
+    public void syoEdullisestiRiittamaton() {
+        assertEquals(kp.syoEdullisesti(100), 100);
+        assertEquals(kp.kassassaRahaa(), 100000);
+    }
+    
+    @Test
+    public void syoMaukkaastiRiittamaton() {
+        assertEquals(kp.syoMaukkaasti(300), 300);
+        assertEquals(kp.kassassaRahaa(), 100000);
+    }
 }
