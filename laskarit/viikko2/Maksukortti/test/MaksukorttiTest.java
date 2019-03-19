@@ -36,9 +36,13 @@ public class MaksukorttiTest {
     public void tearDown() {
     }
 
-    // TODO add test methods here.
-    // The methods must be annotated with annotation @Test. For example:
-    //
-    // @Test
-    // public void hello() {}
+    @Test
+    public void hello() {}
+
+    @Test
+    public void konstruktoriAsettaaSaldonOikein() {
+        Maksukortti kortti = new Maksukortti(10);
+        String vastaus = kortti.toString();
+        assertEquals("Kortilla on rahaa 10.0 euroa", vastaus);
+    }
 }
