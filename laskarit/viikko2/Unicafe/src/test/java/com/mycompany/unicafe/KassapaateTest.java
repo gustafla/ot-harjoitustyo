@@ -7,6 +7,7 @@ import org.junit.Test;
 public class KassapaateTest {
     
     Kassapaate kp;
+    Maksukortti mk;
     
     public KassapaateTest() {
     }
@@ -14,6 +15,7 @@ public class KassapaateTest {
     @Before
     public void setUp() {
         kp = new Kassapaate();
+        mk = new Maksukortti(1000);
     }
     
     @Test
@@ -64,6 +66,57 @@ public class KassapaateTest {
     @Test
     public void syoMaukkaastiRiittamaton() {
         assertEquals(kp.syoMaukkaasti(300), 300);
+        assertEquals(kp.kassassaRahaa(), 100000);
+    }
+    @Test
+    public void syoEdullisestiTasarahaKortti() {
+        mk.otaRahaa(1000-240);
+        assertEquals(kp.syoEdullisesti(mk), true);
+        assertEquals(mk.saldo(), 0);
+    }
+    
+    @Test
+    public void syoMaukkaastiTasarahaKortti() {
+        mk.otaRahaa(1000-400);
+        assertEquals(kp.syoMaukkaasti(mk), true);
+        assertEquals(mk.saldo(), 0);
+    }
+    
+    @Test
+    public void syoEdullisestiKortti() {
+        assertEquals(kp.syoEdullisesti(mk), true);
+        assertEquals(mk.saldo(), 1000-240);
+    }
+    
+    @Test
+    public void syoMaukkaastiKortti() {
+        assertEquals(kp.syoMaukkaasti(mk), true);
+        assertEquals(mk.saldo(), 1000-400);
+    }
+    
+    @Test
+    public void syoEdullisestiRiittamatonKortti() {
+        mk.otaRahaa(900);
+        assertEquals(kp.syoEdullisesti(mk), false);
+        assertEquals(mk.saldo(), 100);
+    }
+    
+    @Test
+    public void syoMaukkaastiRiittamatonKortti() {
+        mk.otaRahaa(700);
+        assertEquals(kp.syoMaukkaasti(mk), false);
+        assertEquals(mk.saldo(), 300);
+    }
+    
+    @Test
+    public void syoEdullisestiKorttiEiLaitaKassaan() {
+        kp.syoEdullisesti(mk);
+        assertEquals(kp.kassassaRahaa(), 100000);
+    }
+    
+    @Test
+    public void syoMaukkaastiKorttiEiLaitaKassaan() {
+        kp.syoMaukkaasti(mk);
         assertEquals(kp.kassassaRahaa(), 100000);
     }
 }
