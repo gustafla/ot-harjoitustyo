@@ -76,4 +76,10 @@ public class MaksukorttiTest {
         kortti.lataaRahaa(25);
         assertEquals("Kortilla on rahaa 35.0 euroa", kortti.toString());
     }
+
+    @Test
+    public void kortinSaldoEiYlitaMaksimiarvoa() {
+        kortti.lataaRahaa(200);
+        assertEquals("Kortilla on rahaa 150.0 euroa", kortti.toString());
+    }
 }
