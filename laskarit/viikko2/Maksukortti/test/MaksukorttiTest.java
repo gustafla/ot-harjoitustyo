@@ -86,4 +86,18 @@ public class MaksukorttiTest {
         kortti.lataaRahaa(-1);
         assertEquals("Kortilla on rahaa 10.0 euroa", kortti.toString());
     }
+    
+    @Test
+    public void kortillaVoiOstaaEdullisenLounaan() {
+        kortti = new Maksukortti(2.5);
+        kortti.syoEdullisesti();
+        assertEquals("Kortilla on rahaa 0.0 euroa", kortti.toString());
+    }
+    
+    @Test
+    public void kortillaVoiOstaaMaukkaanLounaan() {
+        kortti = new Maksukortti(4);
+        kortti.syoMaukkaasti();
+        assertEquals("Kortilla on rahaa 0.0 euroa", kortti.toString());
+    }
 }
