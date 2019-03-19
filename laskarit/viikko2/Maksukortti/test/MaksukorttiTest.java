@@ -64,4 +64,16 @@ public class MaksukorttiTest {
 
         assertEquals("Kortilla on rahaa 6.0 euroa", kortti.toString());
     }
+
+    @Test
+    public void syoEdullisestiEiVieSaldoaNegatiiviseksi() {
+        Maksukortti kortti = new Maksukortti(10);
+
+        kortti.syoMaukkaasti();
+        kortti.syoMaukkaasti();
+        // nyt kortin saldo on 2
+        kortti.syoEdullisesti();
+
+        assertEquals("Kortilla on rahaa 2.0 euroa", kortti.toString());
+    }
 }
