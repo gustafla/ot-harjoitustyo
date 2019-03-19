@@ -126,4 +126,11 @@ public class KassapaateTest {
         assertEquals(kp.kassassaRahaa(), 100000+2000);
         assertEquals(mk.saldo(), 1000+2000);
     }
+    
+    @Test
+    public void negatiivinenKortilleLataus() {
+        kp.lataaRahaaKortille(mk, -10);
+        assertEquals(kp.kassassaRahaa(), 100000);
+        assertEquals(mk.saldo(), 1000);
+    }
 }
