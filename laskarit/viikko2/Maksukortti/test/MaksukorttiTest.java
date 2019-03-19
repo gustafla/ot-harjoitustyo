@@ -80,4 +80,10 @@ public class MaksukorttiTest {
         kortti.lataaRahaa(200);
         assertEquals("Kortilla on rahaa 150.0 euroa", kortti.toString());
     }
+    
+    @Test
+    public void negatiivisenSummanLataaminenEiMuutaKortinSaldoa() {
+        kortti.lataaRahaa(-1);
+        assertEquals("Kortilla on rahaa 10.0 euroa", kortti.toString());
+    }
 }
