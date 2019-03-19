@@ -119,4 +119,11 @@ public class KassapaateTest {
         kp.syoMaukkaasti(mk);
         assertEquals(kp.kassassaRahaa(), 100000);
     }
+    
+    @Test
+    public void kortilleLataus() {
+        kp.lataaRahaaKortille(mk, 2000);
+        assertEquals(kp.kassassaRahaa(), 100000+2000);
+        assertEquals(mk.saldo(), 1000+2000);
+    }
 }
