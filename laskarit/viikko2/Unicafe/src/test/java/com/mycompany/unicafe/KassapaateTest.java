@@ -42,4 +42,16 @@ public class KassapaateTest {
         assertEquals(kp.syoMaukkaasti(400), 0);
         assertEquals(kp.kassassaRahaa(), 100000+400);
     }
+    
+    @Test
+    public void syoEdullisestiVaihtoraha() {
+        assertEquals(kp.syoEdullisesti(1000), 1000-240);
+        assertEquals(kp.kassassaRahaa(), 100000+240);
+    }
+    
+    @Test
+    public void syoMaukkaastiVaihtoraha() {
+        assertEquals(kp.syoMaukkaasti(1000), 1000-400);
+        assertEquals(kp.kassassaRahaa(), 100000+400);
+    }
 }
