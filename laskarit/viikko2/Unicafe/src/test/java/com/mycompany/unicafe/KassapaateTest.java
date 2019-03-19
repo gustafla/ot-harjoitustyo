@@ -20,4 +20,14 @@ public class KassapaateTest {
     public void konstruktoriLaittaaRahaa100000() {
         assertEquals(kp.kassassaRahaa(), 100000);
     }
+    
+    @Test
+    public void edullisiaLounaitaAluksiMyyty0() {
+        assertEquals(kp.edullisiaLounaitaMyyty(), 0);
+    }
+    
+    @Test
+    public void maukkaitaLounaitaAluksiMyyty0() {
+        assertEquals(kp.maukkaitaLounaitaMyyty(), 0);
+    }
 }
