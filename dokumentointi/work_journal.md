@@ -2,4 +2,4 @@
 
 |  päivä  | tunnit | kuvaus |
 |:-------:|:-------|:-------|
-| --03-26 | 1      | Dokumentaation valmistelu ja määrittelydokumentti |
+| --03-26 | 1      | Dokumentaation valmistelu ja määrittelydokumentti, projektihakemiston alustus |
