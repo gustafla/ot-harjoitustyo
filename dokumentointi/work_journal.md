@@ -1,4 +1,4 @@
-# Work journal
+# Työaikakirjanpito
 
 |  päivä  | tunnit | kuvaus |
 |:-------:|:-------|:-------|
