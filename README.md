@@ -6,7 +6,9 @@
 
 ## Projektin dokumentaatio
 
-[Työaikakirjanpito](doc/work_journal.md)
+[Vaatimusmäärittely](dokumentointi/requirements.md)
+
+[Työaikakirjanpito](dokumentointi/work_journal.md)
 
 ## Tehtävät (laskarit)
 
