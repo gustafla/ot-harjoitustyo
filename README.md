@@ -4,7 +4,11 @@
 
 [Linkki kurssimateriaaliin](https://github.com/mluukkai/ohjelmistotekniikka-kevat2019)
 
-## Tehtävät
+## Projektin dokumentaatio
+
+[Työaikakirjanpito](doc/work_journal.md)
+
+## Tehtävät (laskarit)
 
 ### Viikko 1
 
