@@ -1,0 +1,6 @@
+[Monopoli]-2[Noppa]
+[Monopoli]-[Pelilauta]
+[Monopoli]-2..8[Pelaaja]
+[Pelaaja]-[Pelinappula]
+[Pelilauta]-40[Ruutu]
+[Ruutu]-[Ruutu]
