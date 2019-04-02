@@ -8,7 +8,7 @@ estävät vihollisjoukkojen hyökkäyksen tukikohtaan.
 
 ## Perustoiminnallisuudet
 
-- Pelissä on Swing -käyttöliittymä josta näkee rahat, selvittyjen hyökkäysten
+- Pelissä on käyttöliittymä josta näkee rahat, selvittyjen hyökkäysten
   määrän, tukikohdan ottaman vahingon ja pelikentän
 - Viholliset liikkuvat hyökkäysaaltoina reittiä pitkin tukikohtaan
 - Hyökkäysaaltojen välissä on tauko
