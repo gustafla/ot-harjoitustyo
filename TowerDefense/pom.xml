@@ -34,6 +34,6 @@
     </plugins>
   </build>
   <properties>
-    <exec.mainClass>td.App</exec.mainClass>
+    <exec.mainClass>td.ui.TowerDefenseUi</exec.mainClass>
   </properties>
 </project>
