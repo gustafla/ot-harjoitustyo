@@ -1,22 +1,46 @@
 package td.ui;
 
+import td.domain.TowerDefense;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
-import javafx.scene.layout.StackPane;
+import javafx.scene.control.*;
+import javafx.scene.layout.*;
 
 public class TowerDefenseUi extends Application {
+	
+	private TowerDefense towerDefense;
+
+	private Label moneyLabel;
+	private Label waveLabel;
+	private Label healthLabel;
+
+	private void updateLabels() {
+		moneyLabel.setText("Money: " + towerDefense.getMoney());
+		waveLabel.setText("Wave: " + towerDefense.getWave());
+		healthLabel.setText("Health: " + towerDefense.getHealth());
+	}
 
 	@Override
 	public void init() {
-		// TODO initialize game logic
+		towerDefense = new TowerDefense();
 	}
 
 	@Override
 	public void start(Stage primaryStage) {
 		primaryStage.setTitle("Tower Defense");
-		StackPane root = new StackPane();
-		primaryStage.setScene(new Scene(root, 640, 480));
+		BorderPane root = new BorderPane();
+		HBox top = new HBox(16);
+
+		moneyLabel = new Label();
+		waveLabel = new Label();
+		healthLabel = new Label();
+		top.getChildren().addAll(moneyLabel, waveLabel, healthLabel);
+		root.setTop(top);
+
+		updateLabels();
+
+		primaryStage.setScene(new Scene(root));
 		primaryStage.show();
 	}
 
