@@ -16,8 +16,7 @@ JavaFX versioita kuin 11.
 OpenJDK 8:n kanssa en ole onnistunut saamaan mitään JavaFX:ää toimimaan.
 Archin java-openjfx kaatuu johonkin "no toolkit found" exceptioniin,
 ja Gentoolla ei edes ole JavaFX -paketteja.
-JavaFX 11 vaatii periaatteessa Java 11 -kehitysympäristön, mutta omalla
-koneellani se on tähän mennessä toiminut OpenJDK 10:llä.
+JavaFX 11 vaatii Java 11 -yhteensopivan kehitysympäristön.
 
 Kääntäminen tapahtuu komennolla `mvn compile` ja projektin pääluokan voi
 halutessaan suorittaa komennolla `mvn exec:java`.
