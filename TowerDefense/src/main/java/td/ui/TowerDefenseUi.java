@@ -1,7 +1,21 @@
 package td.ui;
 
-public class TowerDefenseUi {
+import javafx.application.Application;
+import javafx.stage.Stage;
+
+public class TowerDefenseUi extends Application {
+
+	@Override
+	public void init() {
+		// TODO initialize game logic
+	}
+
+	@Override
+	public void start(Stage primaryStage) {
+		// TODO initialize UI
+	}
+
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+		launch(args);
     }
 }

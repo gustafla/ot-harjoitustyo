@@ -10,6 +10,11 @@
   <url>https://github.com/gustafla/ot-harjoitustyo</url>
   <dependencies>
     <dependency>
+      <groupId>org.openjfx</groupId>
+      <artifactId>javafx-controls</artifactId>
+      <version>11.0.2</version>
+    </dependency>
+    <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
       <version>4.12</version>
@@ -35,5 +40,7 @@
   </build>
   <properties>
     <exec.mainClass>td.ui.TowerDefenseUi</exec.mainClass>
+    <maven.compiler.source>1.6</maven.compiler.source>
+    <maven.compiler.target>1.6</maven.compiler.target>
   </properties>
 </project>
