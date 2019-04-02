@@ -1,27 +1,16 @@
-# Ohjelmistotekniikka
+# TowerDefense
 
-*Tähän* repositorioon tulee kurssin **ohjelmistotekniikka k2019** -suoritukseni.
+Tämä on Helsingin yliopiston Ohjelmistotekniikka -kurssin työ,
+jossa toteutan torninpuolustuspelin.
 
-[Linkki kurssimateriaaliin](https://github.com/mluukkai/ohjelmistotekniikka-kevat2019)
-
-## Projektin dokumentaatio
+## Dokumentaatio
 
 [Vaatimusmäärittely](dokumentointi/requirements.md)
 
 [Työaikakirjanpito](dokumentointi/work_journal.md)
 
-## Tehtävät (laskarit)
+## Testaus
 
-### Viikko 1
-
-[gitlog.txt](laskarit/viikko1/gitlog.txt)
-
-[komentorivi.txt](laskarit/viikko1/komentorivi.txt)
-
-### Viikko 2
-
-[Maksukortti](laskarit/viikko2/Maksukortti)
-
-[Unicafe](laskarit/viikko2/Unicafe)
-
-![Kattavuusraportti](laskarit/viikko2/kattavuusraportti.png)
+Testit suoritetaan komennolla `mvn test` ja testikattavuusraportin saa tehtyä
+komennolla `mvn jacoco:report` jonka sivut luodaan hakemistoon
+target/site/jacoco.
