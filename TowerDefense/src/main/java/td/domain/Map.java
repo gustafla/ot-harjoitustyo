@@ -19,15 +19,15 @@ public class Map {
 	}
 
 	private void generateType0() {
-		for (int i = 0; i < w/2; i++) {
-			tiles[h-1][i] = Tile.ROAD_RIGHT;
+		for (int i = 0; i < w / 2; i++) {
+			tiles[h - 1][i] = Tile.ROAD_RIGHT;
 		}
 
-		for (int i = h-1; i >= 0; i--) {
-			tiles[i][w/2] = Tile.ROAD_UP;
+		for (int i = h - 1; i >= 0; i--) {
+			tiles[i][w / 2] = Tile.ROAD_UP;
 		}
 
-		for (int i = w/2; i < w-1; i++) {
+		for (int i = w / 2; i < w - 1; i++) {
 			tiles[0][i] = Tile.ROAD_RIGHT;
 		}
 	}
