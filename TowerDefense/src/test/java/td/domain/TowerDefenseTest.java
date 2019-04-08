@@ -9,7 +9,7 @@ public class TowerDefenseTest {
 
 	@Before
 	public void setUp() {
-		td = new TowerDefense();
+		td = new TowerDefense(null);
 	}
 
 	@Test

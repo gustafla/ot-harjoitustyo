@@ -1,6 +1,7 @@
 package td.ui;
 
 import td.domain.TowerDefense;
+import td.domain.Map;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
@@ -23,22 +24,39 @@ public class TowerDefenseUi extends Application {
 
 	@Override
 	public void init() {
-		towerDefense = new TowerDefense();
+		Map map = new Map(20, 20, 0);
+		towerDefense = new TowerDefense(map);
 	}
 
 	@Override
 	public void start(Stage primaryStage) {
+		// Set up stage and main BorderPane
 		primaryStage.setTitle("Tower Defense");
 		BorderPane root = new BorderPane();
-		HBox top = new HBox(16);
 
+		// Set up top UI labels
+		HBox top = new HBox(16);
 		moneyLabel = new Label();
 		waveLabel = new Label();
 		healthLabel = new Label();
 		top.getChildren().addAll(moneyLabel, waveLabel, healthLabel);
 		root.setTop(top);
-
 		updateLabels();
+
+		// Set up the map UI
+		GridPane mapGridPane = new GridPane();
+		for (int i = 0; i < towerDefense.getMap().getHeight(); i++) {
+			for (int j = 0; j < towerDefense.getMap().getWidth(); j++) {
+				switch(towerDefense.getMap().getTile(i, j)) {
+					case WALL: mapGridPane.add(new Label("##"), j, i); break;
+					case ROAD_UP: mapGridPane.add(new Label("^^"), j, i); break;
+					case ROAD_DOWN: mapGridPane.add(new Label("vv"), j, i); break;
+					case ROAD_LEFT: mapGridPane.add(new Label("<<"), j, i); break;
+					case ROAD_RIGHT: mapGridPane.add(new Label(">>"), j, i); break;
+				}
+			}
+		}
+		root.setCenter(mapGridPane);
 
 		primaryStage.setScene(new Scene(root));
 		primaryStage.show();

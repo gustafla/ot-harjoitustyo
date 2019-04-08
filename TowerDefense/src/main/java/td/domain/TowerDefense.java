@@ -4,11 +4,13 @@ public class TowerDefense {
 	private int money;
 	private int wave;
 	private int health;
+	private Map map;
 
-	public TowerDefense() {
-		money = 1000;
-		wave = 1;
-		health = 1000;
+	public TowerDefense(Map map) {
+		this.money = 1000;
+		this.wave = 1;
+		this.health = 1000;
+		this.map = map;
 	}
 
 	public int getMoney() {
@@ -21,5 +23,9 @@ public class TowerDefense {
 	
 	public int getHealth() {
 		return health;
+	}
+
+	public Map getMap() {
+		return map;
 	}
 }
