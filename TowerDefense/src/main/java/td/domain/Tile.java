@@ -1,3 +1,5 @@
+package td.domain;
+
 public enum Tile {
 	WALL(0, 0),
 	ROAD_UP(-1, 0),
