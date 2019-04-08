@@ -26,3 +26,10 @@ halutessaan suorittaa komennolla `mvn exec:java`.
 Testit suoritetaan komennolla `mvn test` ja testikattavuusraportin saa tehtyä
 komennolla `mvn jacoco:report` jonka tulossivut luodaan hakemistoon
 target/site/jacoco.
+
+## Checkstyle
+
+Lähdekoodin tyylin tarkistukset suoritetaan komennolla
+`mvn jxr:jxr checkstyle:checkstyle`.
+
+Tarkistuksen tulokset löytyy sitten tiedostosta target/site/checkstyle.html.
