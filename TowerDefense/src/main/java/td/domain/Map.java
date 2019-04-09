@@ -27,7 +27,7 @@ public class Map {
 			tiles[i][width / 2] = Tile.ROAD_UP;
 		}
 
-		for (int i = width / 2; i < width - 1; i++) {
+		for (int i = width / 2; i < width; i++) {
 			tiles[0][i] = Tile.ROAD_RIGHT;
 		}
 	}
