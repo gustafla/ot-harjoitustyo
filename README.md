@@ -5,9 +5,11 @@ jossa toteutan torninpuolustuspelin.
 
 ## Dokumentaatio
 
-[Vaatimusmäärittely](dokumentointi/requirements.md)
+[Vaatimusmäärittely](documentation/requirements.md)
 
-[Työaikakirjanpito](dokumentointi/work_journal.md)
+[Arkkitehtuurikuvaus](documentation/architecture.md)
+
+[Työaikakirjanpito](documentation/work_journal.md)
 
 ## Kääntäminen
 

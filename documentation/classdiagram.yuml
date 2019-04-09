@@ -1,0 +1,12 @@
+[TowerDefenseUi]
+[TowerDefense|+getMap();+getTowers();+getEnemies();+update(deltaTime: double)]
+[Map|+getTile(...)]
+[<<enumeration>> Tile]
+[Tower|-position: Point2D;-range: double;-power: double;-cooldown: double]
+[Enemy|-position: Point2D;-health: int;-speed: double]
+
+[TowerDefenseUi]-[TowerDefense]
+[TowerDefense]-[Map]
+[TowerDefense]-*[Enemy]
+[TowerDefense]-*[Tower]
+[Map]-*[<<enumeration>> Tile]
