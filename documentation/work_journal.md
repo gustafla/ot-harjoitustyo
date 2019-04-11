@@ -7,5 +7,6 @@
 | --04-05 | 1      | Jacocon ja checkstylen säätö |
 | --04-08 | 3      | Map-luokka ja sille yksinkertainen UI |
 | --04-09 | 1      | Ohjelman rakenteen suunnittelua ja luokkakaavio |
+| --04-11 | 1      | JAR-tiedoston luonti |
 
-Summa: 9 tuntia
+Summa: 10 tuntia
