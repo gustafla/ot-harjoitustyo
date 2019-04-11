@@ -7,14 +7,22 @@ import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
+import javafx.animation.*;
+import javafx.scene.canvas.*;
+import javafx.scene.paint.Color;
 
 public class TowerDefenseUi extends Application {
+
+	private final double NS_IN_SEC = 1000000000.0;
 	
 	private TowerDefense towerDefense;
 
 	private Label moneyLabel;
 	private Label waveLabel;
 	private Label healthLabel;
+
+	private Canvas canvas;
+	private GraphicsContext gc;
 
 	private void updateLabels() {
 		moneyLabel.setText("Money: " + towerDefense.getMoney());
@@ -43,20 +51,35 @@ public class TowerDefenseUi extends Application {
 		root.setTop(top);
 		updateLabels();
 
-		// Set up the map UI
-		GridPane mapGridPane = new GridPane();
-		for (int i = 0; i < towerDefense.getMap().getHeight(); i++) {
-			for (int j = 0; j < towerDefense.getMap().getWidth(); j++) {
-				switch(towerDefense.getMap().getTile(i, j)) {
-					case WALL: mapGridPane.add(new Label("##"), j, i); break;
-					case ROAD_UP: mapGridPane.add(new Label("^^"), j, i); break;
-					case ROAD_DOWN: mapGridPane.add(new Label("vv"), j, i); break;
-					case ROAD_LEFT: mapGridPane.add(new Label("<<"), j, i); break;
-					case ROAD_RIGHT: mapGridPane.add(new Label(">>"), j, i); break;
+		// Set up the canvas
+		canvas = new Canvas(800, 600);
+		gc = canvas.getGraphicsContext2D();
+		root.setCenter(canvas);
+
+		// Set up the combined graphics and game logic loop
+		new AnimationTimer() {
+			long frames = 0;
+			final long FPS_INTERVAL_NS = (long)(2 * NS_IN_SEC);
+			long lastFramecountTimeNs = System.nanoTime();
+			long lastTimeNs = System.nanoTime();
+
+			public void handle(long currentTimeNs) {
+				double deltaTime = (currentTimeNs - lastTimeNs) / NS_IN_SEC;
+				lastTimeNs = currentTimeNs;
+
+				if (currentTimeNs - lastFramecountTimeNs > FPS_INTERVAL_NS) {
+					System.out.println("Average framerate "
+							+ frames / (FPS_INTERVAL_NS / NS_IN_SEC));
+					frames = 0;
+					lastFramecountTimeNs = currentTimeNs;
 				}
+
+				towerDefense.update(deltaTime);
+				updateLabels();
+
+				frames++;
 			}
-		}
-		root.setCenter(mapGridPane);
+		}.start();
 
 		primaryStage.setScene(new Scene(root));
 		primaryStage.show();

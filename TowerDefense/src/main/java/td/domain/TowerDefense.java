@@ -28,4 +28,8 @@ public class TowerDefense {
 	public Map getMap() {
 		return map;
 	}
+
+	public void update(double deltaTime) {
+		
+	}
 }
