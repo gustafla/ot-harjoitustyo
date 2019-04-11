@@ -11,7 +11,7 @@ jossa toteutan torninpuolustuspelin.
 
 [Työaikakirjanpito](documentation/work_journal.md)
 
-## Kääntäminen
+## Kääntäminen ja paketointi
 
 Projekti ei toimi Java 8 -versiolla koska Mavenin repositorysta ei saa vanhempia
 JavaFX versioita kuin 11.
@@ -22,6 +22,9 @@ JavaFX 11 vaatii Java 11 -yhteensopivan kehitysympäristön.
 
 Kääntäminen tapahtuu komennolla `mvn compile` ja projektin pääluokan voi
 halutessaan suorittaa komennolla `mvn exec:java`.
+
+Suoritettavan Java Archiven (.jar -tiedoston) voi generoida komennolla
+`mvn package`. JAR-tiedosto luodaan target-hakemistoon.
 
 ## Testaus
 
