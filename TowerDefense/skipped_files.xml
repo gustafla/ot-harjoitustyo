@@ -7,4 +7,5 @@
 
 <suppressions>
   <suppress files="td.ui.TowerDefenseUi.java" checks="[a-zA-Z0-9]*"/>
+  <suppress files="td.ui.Main.java" checks="[a-zA-Z0-9]*"/>
 </suppressions>
