@@ -42,4 +42,14 @@ public class Enemy {
 		positionX += x * speed;
 		positionY += y * speed;
 	}
+
+	@Override
+	public Enemy clone() {
+		return new Enemy(
+				positionX,
+				positionY,
+				health,
+				speed
+				);
+	}
 }

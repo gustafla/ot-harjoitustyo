@@ -7,8 +7,20 @@ public class TowerDefense {
 	private int money;
 	private int wave;
 	private int health;
-	private Map map;
 
+	private double enemySpawnCooldown;
+	private double enemySpawnCooldownNow;
+	private int enemiesSpawned;
+
+	private final Enemy[] waveEnemyTypes = {
+		new Enemy(0, 0, 10., 0.6)
+	};
+
+	private final int waveEnemyCount[] = {
+		20
+	};
+
+	private Map map;
 	private List<Enemy> enemies;
 	private List<Tower> towers;
 
@@ -19,6 +31,10 @@ public class TowerDefense {
 		this.map = map;
 		this.enemies = new ArrayList<>(100);
 		this.towers = new ArrayList<>(20);
+
+		this.enemySpawnCooldown = 0.3;
+		this.enemySpawnCooldownNow = 0.0;
+		this.enemiesSpawned = 0;
 	}
 
 	public int getMoney() {
@@ -41,7 +57,7 @@ public class TowerDefense {
 		return enemies;
 	}
 
-	public List<Enemy> getTowers() {
+	public List<Tower> getTowers() {
 		return towers;
 	}
 
@@ -51,6 +67,15 @@ public class TowerDefense {
 
 	public void update(double deltaTime) {
 		// spawn enemies
+		if (enemiesSpawned < waveEnemyCount[wave - 1]) {
+			if (enemySpawnCooldownNow >= 0.) {
+				enemySpawnCooldownNow -= deltaTime;
+			} else {
+				enemySpawnCooldownNow = enemySpawnCooldown;
+				enemiesSpawned++;
+				enemies.add(waveEnemyTypes[wave - 1].clone());
+			}
+		}
 
 		// check all towers for ready to shoot and find enemy for each in range
 		for (Tower tower: towers) {
