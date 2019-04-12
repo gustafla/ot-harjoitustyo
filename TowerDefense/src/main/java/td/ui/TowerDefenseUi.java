@@ -26,7 +26,7 @@ public class TowerDefenseUi extends Application {
 
 	private void updateLabels() {
 		moneyLabel.setText("Money: " + towerDefense.getMoney());
-		waveLabel.setText("Wave: " + towerDefense.getWave());
+		waveLabel.setText("Wave: " + towerDefense.getWaveNumber());
 		healthLabel.setText("Health: " + towerDefense.getHealth());
 	}
 
