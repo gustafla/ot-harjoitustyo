@@ -2,6 +2,7 @@ package td.ui;
 
 import td.domain.TowerDefense;
 import td.domain.Map;
+import td.domain.Enemy;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
@@ -31,6 +32,17 @@ public class TowerDefenseUi extends Application {
 		moneyLabel.setText("Money: " + towerDefense.getMoney());
 		waveLabel.setText("Wave: " + towerDefense.getWaveNumber());
 		healthLabel.setText("Health: " + towerDefense.getHealth());
+	}
+
+	private void drawEnemies() {
+		gc.setFill(Color.RED);
+		for (Enemy enemy: towerDefense.getEnemies()) {
+			gc.fillOval(
+					enemy.getPositionX() - 5,
+					enemy.getPositionY() - 5,
+					10,
+					10);
+		}
 	}
 
 	@Override
@@ -82,7 +94,11 @@ public class TowerDefenseUi extends Application {
 				}
 
 				towerDefense.update(deltaTime);
+
 				updateLabels();
+
+				gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
+				drawEnemies();
 
 				frames++;
 			}

@@ -22,7 +22,7 @@ public class TowerDefense {
 				map.getSpawnPositionY(),
 				map.getSpawnPositionX(),
 				10, // health,
-				0.5); // speed
+				20.); // speed
 		this.wave = new Wave(firstEnemyType, 20);
 	}
 
