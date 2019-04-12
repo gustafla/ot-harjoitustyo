@@ -15,9 +15,15 @@ public class TowerDefense {
 		this.money = 1000;
 		this.health = 1000;
 		this.map = map;
-		this.wave = new Wave(new Enemy(0, 0, 10, 0.6), 20);
 		this.enemies = new ArrayList<>(100);
 		this.towers = new ArrayList<>(20);
+
+		Enemy firstEnemyType = new Enemy(
+				map.getSpawnPositionY(),
+				map.getSpawnPositionX(),
+				10, // health,
+				0.5); // speed
+		this.wave = new Wave(firstEnemyType, 20);
 	}
 
 	public int getMoney() {
@@ -48,19 +54,36 @@ public class TowerDefense {
 		towers.add(tower);
 	}
 
-	public void update(double deltaTime) {
-		// spawn enemies
+	private void spawnEnemies(double deltaTime) {
 		Enemy newEnemy = wave.update(deltaTime);
 		if (newEnemy != null) {
 			enemies.add(newEnemy);
 		}
+	}
+
+	private void moveEnemies(double deltaTime) {
+		for (Enemy enemy: enemies) {
+			double y = enemy.getPositionY();
+			double x = enemy.getPositionX();
+			Tile under = map.getTileFromPosition(y, x);
+			if (under == Tile.WALL) {
+				throw new RuntimeException("Cannot deal with enemy in wall.");
+			} else {
+				enemy.move(under.y() * deltaTime, under.x() * deltaTime);
+			}
+		}
+	}
+
+	public void update(double deltaTime) {
+		spawnEnemies(deltaTime);
+
+		moveEnemies(deltaTime);
+
+		// check for enemies who have reached the base
 
 		// check all towers for ready to shoot and find enemy for each in range
 		for (Tower tower: towers) {
-		}
-
-		// move all enemies and check for enemies who have reached the base
-		for (Enemy enemy: enemies) {
+			;
 		}
 		
 	}

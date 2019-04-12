@@ -10,7 +10,7 @@ public class MapTest {
 
 	@Before
 	public void setUp() {
-		map = new Map(64, 64, 0);
+		map = new Map(64, 64, 10, 0);
 	}
 
 	@Test(expected = IllegalArgumentException.class)
@@ -35,11 +35,11 @@ public class MapTest {
 
 	@Test
 	public void type0ContainsRoadTiles() {
-		assertEquals(map.getTile(63, 0), Tile.ROAD_RIGHT);
+		assertEquals(Tile.ROAD_RIGHT, map.getTile(0, 63));
 	}
 
 	@Test
 	public void type0ContainsWallTiles() {
-		assertEquals(map.getTile(0, 0), Tile.WALL);
+		assertEquals(Tile.WALL, map.getTile(0, 0));
 	}
 }

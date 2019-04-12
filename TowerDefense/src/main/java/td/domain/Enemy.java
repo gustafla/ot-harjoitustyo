@@ -1,26 +1,26 @@
 package td.domain;
 
 public class Enemy {
-	private double positionX;
 	private double positionY;
+	private double positionX;
 	private double health;
 	private double healthNow;
 	private double speed;
 
-	public Enemy(double x, double y, double health, double speed) {
-		this.positionX = x;
+	public Enemy(double y, double x, double health, double speed) {
 		this.positionY = y;
+		this.positionX = x;
 		this.health = health;
 		this.healthNow = health;
 		this.speed = speed;
 	}
 
-	public double getPositionX() {
-		return positionX;
-	}
-
 	public double getPositionY() {
 		return positionY;
+	}
+
+	public double getPositionX() {
+		return positionX;
 	}
 
 	public double getHealth() {
@@ -38,16 +38,16 @@ public class Enemy {
 		}
 	}
 	
-	public void move(double x, double y) {
-		positionX += x * speed;
+	public void move(double y, double x) {
 		positionY += y * speed;
+		positionX += x * speed;
 	}
 
 	@Override
 	public Enemy clone() {
 		return new Enemy(
-				positionX,
 				positionY,
+				positionX,
 				health,
 				speed
 				);

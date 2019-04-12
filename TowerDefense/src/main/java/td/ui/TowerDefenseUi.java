@@ -14,6 +14,9 @@ import javafx.scene.paint.Color;
 public class TowerDefenseUi extends Application {
 
 	private final double NS_IN_SEC = 1000000000.0;
+	private final int CANVAS_WIDHT = 800;
+	private final int CANVAS_HEIGHT = 600;
+	private final int TILE_SIZE = 20;
 	
 	private TowerDefense towerDefense;
 
@@ -32,7 +35,11 @@ public class TowerDefenseUi extends Application {
 
 	@Override
 	public void init() {
-		Map map = new Map(20, 20, 0);
+		Map map = new Map(
+				CANVAS_HEIGHT / TILE_SIZE,
+				CANVAS_WIDHT / TILE_SIZE,
+				TILE_SIZE,
+				0);
 		towerDefense = new TowerDefense(map);
 	}
 
@@ -52,7 +59,7 @@ public class TowerDefenseUi extends Application {
 		updateLabels();
 
 		// Set up the canvas
-		canvas = new Canvas(800, 600);
+		canvas = new Canvas(CANVAS_WIDHT, CANVAS_HEIGHT);
 		gc = canvas.getGraphicsContext2D();
 		root.setCenter(canvas);
 

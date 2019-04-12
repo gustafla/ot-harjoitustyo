@@ -6,8 +6,13 @@ public class Map {
 	private Tile[][] tiles;
 	private int height;
 	private int width;
+	private double tileSize;
+	private double spawnPositionY;
+	private double spawnPositionX;
+	private int baseTileX;
+	private int baseTileY;
 
-	public Map(int height, int width) {
+	public Map(int height, int width, double tileSize) {
 		this.tiles = new Tile[height][width];
 		for (int i = 0; i < height; i++) {
 			for (int j = 0; j < width; j++) {
@@ -16,6 +21,7 @@ public class Map {
 		}
 		this.height = height;
 		this.width = width;
+		this.tileSize = tileSize;
 	}
 
 	private void generateType0() {
@@ -30,10 +36,15 @@ public class Map {
 		for (int i = width / 2; i < width; i++) {
 			tiles[0][i] = Tile.ROAD_RIGHT;
 		}
+
+		spawnPositionY = height * tileSize - tileSize / 2;
+		spawnPositionX = tileSize / 2;
+		baseTileY = 0;
+		baseTileX = width - 1;
 	}
 
-	public Map(int height, int width, int type) {
-		this(height, width);
+	public Map(int height, int width, double tileSize, int type) {
+		this(height, width, tileSize);
 
 		if (type < 0) {
 			throw new IllegalArgumentException("Type cannot be negative");
@@ -48,9 +59,13 @@ public class Map {
 
 	public Tile getTile(int y, int x) {
 		if (x >= width || x < 0 || y >= height || y < 0) {
-			throw new IllegalArgumentException();
+			throw new IllegalArgumentException("Tile (y = " + y + ", x = " + x + ") doesn't exist.");
 		}
 		return tiles[y][x];
+	}
+
+	public Tile getTileFromPosition(double y, double x) {
+		return getTile((int) (y / tileSize), (int) (x / tileSize));
 	}
 
 	public int getWidth() {
@@ -59,5 +74,22 @@ public class Map {
 
 	public int getHeight() {
 		return height;
+	}
+
+	public double getTileSize() {
+		return tileSize;
+	}
+
+	public double getSpawnPositionY() {
+		return spawnPositionY;
+	}
+
+	public double getSpawnPositionX() {
+		return spawnPositionX;
+	}
+
+	public boolean isPositionAtBase(double y, double x) {
+		return (int) (y / tileSize) == baseTileY
+			&& (int) (x / tileSize) == baseTileX;
 	}
 }
