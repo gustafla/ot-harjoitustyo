@@ -29,12 +29,12 @@ public class Wave {
 		return enemyCount;
 	}
 
-	public boolean hasFinishedSpawning() {
+	public boolean spawningFinished() {
 		return enemiesSpawned >= enemyCount;
 	}
 
 	public Enemy update(double deltaTime) {
-		if (!hasFinishedSpawning()) {
+		if (!spawningFinished()) {
 			if (enemySpawnCooldownNow >= 0.) {
 				enemySpawnCooldownNow -= deltaTime;
 			} else {
