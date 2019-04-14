@@ -35,7 +35,7 @@ public class TowerDefense {
 		return wave.getNumber();
 	}
 
-	public boolean isWaveOver() {
+	public boolean waveIsOver() {
 		return enemies.isEmpty() && wave.hasFinishedSpawning();
 	}
 

@@ -50,5 +50,6 @@ public class Wave {
 		this.number++;
 		this.enemyType = enemyType;
 		this.enemyCount = enemyCount;
+		this.enemiesSpawned = 0;
 	}
 }

@@ -12,6 +12,7 @@ import javafx.scene.layout.*;
 import javafx.animation.*;
 import javafx.scene.canvas.*;
 import javafx.scene.paint.Color;
+import javafx.event.ActionEvent;
 
 public class TowerDefenseUi extends Application {
 
@@ -25,6 +26,7 @@ public class TowerDefenseUi extends Application {
 	private Label moneyLabel;
 	private Label waveLabel;
 	private Label healthLabel;
+	private Button waveButton;
 
 	private Canvas canvas;
 	private GraphicsContext gc;
@@ -96,7 +98,7 @@ public class TowerDefenseUi extends Application {
 		root.setCenter(canvas);
 
 		// Set up the combined graphics and game logic loop
-		new AnimationTimer() {
+		AnimationTimer at = new AnimationTimer() {
 			long frames = 0;
 			final long FPS_INTERVAL_NS = (long)(2 * NS_IN_SEC);
 			long lastFramecountTimeNs = System.nanoTime();
@@ -121,9 +123,26 @@ public class TowerDefenseUi extends Application {
 				drawMap();
 				drawEnemies();
 
+				if (towerDefense.waveIsOver()) {
+					waveButton.setText("Next wave");
+					waveButton.setVisible(true);
+					stop();
+				}
+
 				frames++;
 			}
-		}.start();
+		};
+
+		// Set up next wave button
+		waveButton = new Button("Start wave");
+		top.getChildren().add(waveButton);
+		waveButton.setOnAction((ActionEvent event) -> {
+			if (towerDefense.waveIsOver()) {
+				towerDefense.nextWave();
+				at.start();
+				waveButton.setVisible(false);
+			}
+		});
 
 		primaryStage.setScene(new Scene(root));
 		primaryStage.show();
