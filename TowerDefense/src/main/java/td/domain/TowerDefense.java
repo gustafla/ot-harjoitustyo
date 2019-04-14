@@ -2,6 +2,7 @@ package td.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Iterator;
 
 public class TowerDefense {
 	private int money;
@@ -22,7 +23,7 @@ public class TowerDefense {
 				map.getSpawnPositionY(),
 				map.getSpawnPositionX(),
 				10, // health,
-				20.); // speed
+				40.); // speed
 		this.wave = new Wave(firstEnemyType, 20);
 	}
 
@@ -78,6 +79,14 @@ public class TowerDefense {
 		moveEnemies(deltaTime);
 
 		// check for enemies who have reached the base
+		Iterator<Enemy> it = enemies.iterator();
+		while (it.hasNext()) {
+			Enemy e = it.next();
+			if (map.positionIsAtBase(e.getPositionY(), e.getPositionX())) {
+				it.remove();
+				health--;
+			}
+		}
 
 		// check all towers for ready to shoot and find enemy for each in range
 		for (Tower tower: towers) {

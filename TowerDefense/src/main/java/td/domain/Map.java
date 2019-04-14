@@ -92,7 +92,7 @@ public class Map {
 		return spawnPositionX;
 	}
 
-	public boolean isPositionAtBase(double y, double x) {
+	public boolean positionIsAtBase(double y, double x) {
 		return (int) (y / tileSize) == baseTileY
 			&& (int) (x / tileSize) == baseTileX;
 	}
