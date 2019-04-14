@@ -5,7 +5,11 @@ public enum Tile {
 	ROAD_UP(-1, 0),
 	ROAD_DOWN(1, 0),
 	ROAD_LEFT(0, -1),
-	ROAD_RIGHT(0, 1);
+	ROAD_RIGHT(0, 1),
+	ROAD_NE(-1, 1),
+	ROAD_SE(1, 1),
+	ROAD_SW(1, -1),
+	ROAD_NW(-1, -1);
 
 	private int y;
 	private int x;

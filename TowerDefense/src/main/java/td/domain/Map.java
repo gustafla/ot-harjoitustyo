@@ -30,12 +30,14 @@ public class Map {
 		for (int i = 0; i < width / 2; i++) {
 			tiles[height - 1][i] = Tile.ROAD_RIGHT;
 		}
+		tiles[height - 1][width / 2] = Tile.ROAD_NE;
 
-		for (int i = height - 1; i >= 0; i--) {
+		for (int i = height - 2; i > 0; i--) {
 			tiles[i][width / 2] = Tile.ROAD_UP;
 		}
+		tiles[0][width / 2] = Tile.ROAD_NE;
 
-		for (int i = width / 2; i < width; i++) {
+		for (int i = width / 2 + 1; i < width; i++) {
 			tiles[0][i] = Tile.ROAD_RIGHT;
 		}
 
@@ -66,8 +68,8 @@ public class Map {
 		return tiles[y][x];
 	}
 
-	public double getTileCoordinateFromPosition(double x) {
-		return x / tileSize;
+	public Tile getTileByPosition(double y, double x) {
+		return getTile((int) (y / tileSize), (int) (x / tileSize));
 	}
 
 	public int getWidth() {

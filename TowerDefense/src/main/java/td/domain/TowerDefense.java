@@ -61,46 +61,13 @@ public class TowerDefense {
 		}
 	}
 
-	private double frac(double num) {
-		long i = (long) num;
-		return num - i;
-	}
-
-	private Tile nearestNeighborTileOnAxis(double tileY, double tileX, int y, int x) {
-		double coord = tileY * y + tileX * x;
-		if (frac(coord) < 0.5) {
-			if (coord - 1 < 0) return null;
-			return map.getTile((int) tileY - 1 * y, (int) tileX - 1 * x);
-		}
-		if (coord + 1 >= map.getHeight() * y + map.getWidth() * x) return null;
-		return map.getTile((int) tileY + 1 * y, (int) tileX + 1 * x);
-	}
-
-	private void moveEnemy(Enemy enemy, double deltaTime, Tile[] tiles) {
-		double moveY = 0;
-		double moveX = 0;
-		for (Tile t: tiles) {
-			if (t != null) {
-				moveY += t.y();
-				moveX += t.x();
-			}
-		}
-		enemy.move(moveY * deltaTime, moveX * deltaTime);
-	}
-
 	private void moveEnemies(double deltaTime) {
-		Tile[] tiles = new Tile[3];
 		for (Enemy enemy: enemies) {
-			double underY = map.getTileCoordinateFromPosition(enemy.getPositionY());
-			double underX = map.getTileCoordinateFromPosition(enemy.getPositionX());
-			Tile under = map.getTile((int) underY, (int) underX);
+			Tile under = map.getTileByPosition(enemy.getPositionY(), enemy.getPositionX());
 			if (under == Tile.WALL) {
 				throw new RuntimeException("Enemy in wall.");
 			} else {
-				tiles[0] = under;
-				tiles[1] = nearestNeighborTileOnAxis(underY, underX, 1, 0);
-				tiles[2] = nearestNeighborTileOnAxis(underY, underX, 0, 1);
-				moveEnemy(enemy, deltaTime, tiles);
+				enemy.move(under.y() * deltaTime, under.x() * deltaTime);
 			}
 		}
 	}
