@@ -9,7 +9,7 @@ public class Wave {
 	private int enemiesSpawned;
 
 	public Wave(Enemy enemyType, int enemyCount) {
-		this.number = 1;
+		this.number = 0;
 		this.enemyType = enemyType;
 		this.enemyCount = enemyCount;
 		this.enemySpawnCooldown = 0.3;
@@ -29,12 +29,12 @@ public class Wave {
 		return enemyCount;
 	}
 
-	public boolean finishedSpawning() {
+	public boolean hasFinishedSpawning() {
 		return enemiesSpawned >= enemyCount;
 	}
 
 	public Enemy update(double deltaTime) {
-		if (!finishedSpawning()) {
+		if (!hasFinishedSpawning()) {
 			if (enemySpawnCooldownNow >= 0.) {
 				enemySpawnCooldownNow -= deltaTime;
 			} else {

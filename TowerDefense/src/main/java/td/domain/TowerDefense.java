@@ -24,7 +24,7 @@ public class TowerDefense {
 				map.getSpawnPositionX(),
 				10, // health,
 				40.); // speed
-		this.wave = new Wave(firstEnemyType, 20);
+		this.wave = new Wave(firstEnemyType, 0);
 	}
 
 	public int getMoney() {
@@ -33,6 +33,14 @@ public class TowerDefense {
 
 	public int getWaveNumber() {
 		return wave.getNumber();
+	}
+
+	public boolean isWaveOver() {
+		return enemies.isEmpty() && wave.hasFinishedSpawning();
+	}
+
+	public void nextWave() {
+		wave.upgrade(wave.getEnemyType(), wave.getEnemyCount() + 10);
 	}
 	
 	public int getHealth() {
