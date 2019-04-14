@@ -66,8 +66,8 @@ public class Map {
 		return tiles[y][x];
 	}
 
-	public int getTileCoordinateFromPosition(double x) {
-		return (int) (x / tileSize);
+	public double getTileCoordinateFromPosition(double x) {
+		return x / tileSize;
 	}
 
 	public int getWidth() {
