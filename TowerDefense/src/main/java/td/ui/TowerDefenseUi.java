@@ -36,10 +36,17 @@ public class TowerDefenseUi extends Application {
 	}
 
 	private void drawMap() {
-		gc.setFill(Color.LIGHTGRAY);
 		Map m = towerDefense.getMap();
 		for (int i = 0; i < m.getHeight(); i++) {
 			for (int j = 0; j < m.getWidth(); j++) {
+				if (i == (int) (m.getSpawnPositionY() / TILE_SIZE)
+						&& j == (int) (m.getSpawnPositionX() / TILE_SIZE)) {
+					gc.setFill(Color.PINK);
+				} else if (i == m.getBaseTileY() && j == m.getBaseTileX()) {
+					gc.setFill(Color.LIGHTGREEN);
+				} else {
+					gc.setFill(Color.LIGHTGRAY);
+				}
 				if (m.getTile(i, j) != Tile.WALL) {
 					gc.fillRect(j * TILE_SIZE, i * TILE_SIZE, TILE_SIZE, TILE_SIZE);
 				}
