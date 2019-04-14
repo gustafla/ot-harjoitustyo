@@ -2,6 +2,7 @@ package td.ui;
 
 import td.domain.TowerDefense;
 import td.domain.Map;
+import td.domain.Tile;
 import td.domain.Enemy;
 import javafx.application.Application;
 import javafx.stage.Stage;
@@ -32,6 +33,18 @@ public class TowerDefenseUi extends Application {
 		moneyLabel.setText("Money: " + towerDefense.getMoney());
 		waveLabel.setText("Wave: " + towerDefense.getWaveNumber());
 		healthLabel.setText("Health: " + towerDefense.getHealth());
+	}
+
+	private void drawMap() {
+		gc.setFill(Color.LIGHTGRAY);
+		Map m = towerDefense.getMap();
+		for (int i = 0; i < m.getHeight(); i++) {
+			for (int j = 0; j < m.getWidth(); j++) {
+				if (m.getTile(i, j) != Tile.WALL) {
+					gc.fillRect(j * TILE_SIZE, i * TILE_SIZE, TILE_SIZE, TILE_SIZE);
+				}
+			}
+		}
 	}
 
 	private void drawEnemies() {
@@ -98,6 +111,7 @@ public class TowerDefenseUi extends Application {
 				updateLabels();
 
 				gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
+				drawMap();
 				drawEnemies();
 
 				frames++;
