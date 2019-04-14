@@ -65,7 +65,9 @@ public class TowerDefense {
 		for (Enemy enemy: enemies) {
 			double y = enemy.getPositionY();
 			double x = enemy.getPositionX();
-			Tile under = map.getTileFromPosition(y, x);
+			int underY = map.getTileCoordinateFromPosition(y);
+			int underX = map.getTileCoordinateFromPosition(x);
+			Tile under = map.getTile(underY, underX);
 			if (under == Tile.WALL) {
 				throw new RuntimeException("Cannot deal with enemy in wall.");
 			} else {

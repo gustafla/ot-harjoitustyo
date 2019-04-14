@@ -37,6 +37,7 @@ public class Enemy {
 			healthNow = 0.;
 		}
 	}
+
 	
 	public void move(double y, double x) {
 		positionY += y * speed;

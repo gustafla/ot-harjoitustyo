@@ -1,6 +1,8 @@
 package td.domain;
 
 import java.lang.IllegalArgumentException;
+import java.util.List;
+import java.util.ArrayList;
 
 public class Map {
 	private Tile[][] tiles;
@@ -64,8 +66,8 @@ public class Map {
 		return tiles[y][x];
 	}
 
-	public Tile getTileFromPosition(double y, double x) {
-		return getTile((int) (y / tileSize), (int) (x / tileSize));
+	public int getTileCoordinateFromPosition(double x) {
+		return (int) (x / tileSize);
 	}
 
 	public int getWidth() {
