@@ -10,8 +10,8 @@ public class Enemy {
 	public Enemy(double y, double x, double maxHealth, double speed) {
 		this.positionY = y;
 		this.positionX = x;
-		this.maxHealth = health;
-		this.health = health;
+		this.maxHealth = maxHealth;
+		this.health = maxHealth;
 		this.speed = speed;
 	}
 
