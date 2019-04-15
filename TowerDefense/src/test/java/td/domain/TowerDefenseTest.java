@@ -13,17 +13,17 @@ public class TowerDefenseTest {
 	}
 
 	@Test
-	public void constructedWith1000Money() {
-		assertEquals(1000, td.getMoney());
+	public void constructedWithMoney() {
+		assertTrue(0 < td.getMoney());
 	}
 
 	@Test
-	public void constructedWithWave1() {
-		assertEquals(1, td.getWaveNumber());
+	public void constructedWithWave0() {
+		assertEquals(0, td.getWaveNumber());
 	}
 
 	@Test
-	public void constructedWith1000Health() {
-		assertEquals(1000, td.getHealth());
+	public void constructedWithHealth() {
+		assertTrue(0 < td.getHealth());
 	}
 }
