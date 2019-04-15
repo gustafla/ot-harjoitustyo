@@ -10,8 +10,8 @@ estävät vihollisjoukkojen hyökkäyksen tukikohtaan.
 
 - [x] Pelissä on käyttöliittymä josta näkee rahat, selvittyjen hyökkäysten
   määrän, tukikohdan ottaman vahingon ja pelikentän
-- [ ] Viholliset liikkuvat hyökkäysaaltoina reittiä pitkin tukikohtaan
-- [ ] Hyökkäysaaltojen välissä on tauko
+- [x] Viholliset liikkuvat hyökkäysaaltoina reittiä pitkin tukikohtaan
+- [x] Hyökkäysaaltojen välissä on tauko
 - [x] Perille päässyt vihollinen vahingoittaa tukikohtaa kerran ja katoaa
 - [ ] Pelaaja voi ostaa ja sijoittaa tykkejä kentälle
 - [ ] Tykit ampuvat vihollisia
@@ -22,6 +22,6 @@ estävät vihollisjoukkojen hyökkäyksen tukikohtaan.
 - [ ] Pelin voi laittaa tauolle jolloin pelaaja ei näe mitään eikä voi tehdä mitään
 - [ ] Pelin voi tallentaa tiedostoon ja jatkaa myöhemmin
 	- [ ] Vain hyökkäysaaltojen välissä mieluiten
-- [ ] Viholliset vahvistuvat ja/tai niiden määrä nousee
+- [x] Viholliset vahvistuvat ja/tai niiden määrä nousee
 - [ ] Tykkejä voi vahvistaa
 - [ ] Erilaisia reittejä/kenttiä
