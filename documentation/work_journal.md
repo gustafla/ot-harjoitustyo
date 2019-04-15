@@ -10,5 +10,6 @@
 | --04-11 | 1      | JAR-tiedoston luonti |
 | --04-12 | 2      | Vihollisten luonti, -liikkuminen ja -piirtäminen |
 | --04-14 | 5      | Lisää käyttöliittymää ja oleellisia pelimekaniikkoja (viholliset vahingoittaa yms.) |
+| --04-15 | 2      | Lisää testejä |
 
-Summa: 17 tuntia
+Summa: 19 tuntia
