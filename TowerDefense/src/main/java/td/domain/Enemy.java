@@ -3,15 +3,15 @@ package td.domain;
 public class Enemy {
 	private double positionY;
 	private double positionX;
+	private double maxHealth;
 	private double health;
-	private double healthNow;
 	private double speed;
 
-	public Enemy(double y, double x, double health, double speed) {
+	public Enemy(double y, double x, double maxHealth, double speed) {
 		this.positionY = y;
 		this.positionX = x;
+		this.maxHealth = health;
 		this.health = health;
-		this.healthNow = health;
 		this.speed = speed;
 	}
 
@@ -23,18 +23,18 @@ public class Enemy {
 		return positionX;
 	}
 
+	public double getMaxHealth() {
+		return maxHealth;
+	}
+
 	public double getHealth() {
 		return health;
 	}
 
-	public double getHealthNow() {
-		return healthNow;
-	}
-
 	public void takeDamage(double amount) {
-		healthNow -= amount;
-		if (healthNow < 0.) {
-			healthNow = 0.;
+		health -= amount;
+		if (health < 0.) {
+			health = 0.;
 		}
 	}
 
@@ -49,7 +49,7 @@ public class Enemy {
 		return new Enemy(
 				positionY,
 				positionX,
-				health,
+				maxHealth,
 				speed
 				);
 	}
