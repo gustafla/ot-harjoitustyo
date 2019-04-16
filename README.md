@@ -11,6 +11,10 @@ jossa toteutan torninpuolustuspelin.
 
 [Työaikakirjanpito](documentation/work_journal.md)
 
+## Julkaisut
+
+[Viikko 5](../../releases/tag/v0.1)
+
 ## Kääntäminen ja paketointi
 
 Projekti ei toimi Java 8 -versiolla koska Mavenin repositorysta ei saa vanhempia
