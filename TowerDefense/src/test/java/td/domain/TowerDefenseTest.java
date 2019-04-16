@@ -64,7 +64,7 @@ public class TowerDefenseTest {
 	@Test(timeout=1000)
 	public void waveEndsWithNoEnemies() {
 		td.nextWave();
-		while (!td.waveIsOver()) {
+		while (!td.isWaveOver()) {
 			td.update(1./30.);
 		}
 		assertTrue(td.getEnemies().isEmpty());
@@ -74,7 +74,7 @@ public class TowerDefenseTest {
 	public void waveEndsWithLessHealthAsEnemiesReachBase() {
 		int healthBefore = td.getHealth();
 		td.nextWave();
-		while (!td.waveIsOver()) {
+		while (!td.isWaveOver()) {
 			td.update(1./30.);
 		}
 		assertTrue(td.getEnemies().isEmpty());
