@@ -123,7 +123,7 @@ public class TowerDefenseUi extends Application {
 				drawMap();
 				drawEnemies();
 
-				if (towerDefense.waveIsOver()) {
+				if (towerDefense.isWaveOver()) {
 					waveButton.setText("Next wave");
 					waveButton.setVisible(true);
 					stop();
@@ -137,7 +137,7 @@ public class TowerDefenseUi extends Application {
 		waveButton = new Button("Start wave");
 		top.getChildren().add(waveButton);
 		waveButton.setOnAction((ActionEvent event) -> {
-			if (towerDefense.waveIsOver()) {
+			if (towerDefense.isWaveOver()) {
 				towerDefense.nextWave();
 				at.start();
 				waveButton.setVisible(false);
