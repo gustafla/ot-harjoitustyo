@@ -11,6 +11,6 @@
 | --04-12 | 2      | Vihollisten luonti, -liikkuminen ja -piirtäminen |
 | --04-14 | 5      | Lisää käyttöliittymää ja oleellisia pelimekaniikkoja (viholliset vahingoittaa yms.) |
 | --04-15 | 2      | Lisää testejä |
-| --04-16 | 1      | Arkkitehtuurikuvauksen päivitys |
+| --04-16 | 1      | Arkkitehtuurikuvauksen päivitys, releasen luominen |
 
 Summa: 20 tuntia
