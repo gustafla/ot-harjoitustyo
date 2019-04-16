@@ -1,0 +1,17 @@
+...->+waveButton:fire()
+waveButton->+towerDefense:isWaveOver()
+towerDefense->+enemies:isEmpty()
+enemies->-towerDefense:true
+towerDefense->+wave:isSpawningFinished()
+wave->-towerDefense:true
+towerDefense->-waveButton:true
+waveButton->+towerDefense:nextWave()
+towerDefense->+wave:getEnemyType()
+wave->-towerDefense:Enemy
+towerDefense->+wave:getEnemyCount
+wave->-towerDefense:0
+towerDefense->wave:upgrade(Enemy, 0+10)
+towerDefense->-waveButton:
+waveButton->animationTimer:start()
+waveButton->waveButton:setVisible(false)
+waveButton->-...:
