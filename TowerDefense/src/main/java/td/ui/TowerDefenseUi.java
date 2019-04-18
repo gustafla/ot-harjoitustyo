@@ -1,9 +1,11 @@
 package td.ui;
 
+import java.util.AbstractMap;
 import td.domain.TowerDefense;
 import td.domain.Field;
 import td.domain.Tile;
 import td.domain.Enemy;
+import td.domain.Tower;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
@@ -39,6 +41,8 @@ public class TowerDefenseUi extends Application {
 
 	private void drawField() {
 		Field m = towerDefense.getField();
+
+		// Draw roads, spawn and base
 		for (int i = 0; i < m.getHeight(); i++) {
 			for (int j = 0; j < m.getWidth(); j++) {
 				if (i == (int) (m.getSpawnPositionY() / TILE_SIZE)
@@ -53,6 +57,14 @@ public class TowerDefenseUi extends Application {
 					gc.fillRect(j * TILE_SIZE, i * TILE_SIZE, TILE_SIZE, TILE_SIZE);
 				}
 			}
+		}
+
+		// Draw towers
+		gc.setFill(Color.BLUE);
+		for (AbstractMap.SimpleEntry<Integer, Integer> coordinates: m.getTowerCoordinates()) {
+			int y = coordinates.getKey() * TILE_SIZE + TILE_SIZE / 2;
+			int x = coordinates.getValue() * TILE_SIZE + TILE_SIZE / 2;
+			gc.fillPolygon(new double[]{x-5, x, x+5}, new double[]{y+5, y-5, y+5}, 3);
 		}
 	}
 

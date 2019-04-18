@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.AbstractMap;
 
 /**
  * This class represents the game environment on which the enemies can walk and
@@ -24,9 +25,9 @@ public class Field {
 	/**
 	 * Constructs a new uninitialized Field.
 	 *
-	 * @param height	number of Tiles in the y-direction
-	 * @param width		number of Tiles in the x-direction
-	 * @param tileSize	the ratio of sub-tile units to Tiles per dimension
+	 * @param height	number of tiles in the y-direction
+	 * @param width		number of tiles in the x-direction
+	 * @param tileSize	the ratio of sub-tile units to tiles per dimension
 	 */
 	public Field(int height, int width, double tileSize) {
 		this.tiles = new Tile[height][width];
@@ -219,7 +220,38 @@ public class Field {
 		return free;
 	}
 
-	public Map<Integer, Map<Integer, Tower>> getTowers() {
-		return towers;
+	/**
+	 * Get tower on tile.
+	 *
+	 * @param y		tile y-coordinate
+	 * @param x		tile x-coordinate
+	 *
+	 * @return tower if tower exists on tile, otherwise null
+	 */
+	public Tower getTower(int y, int x) {
+		Map<Integer, Tower> xMap = towers.get(y);
+		if (xMap != null) {
+			return xMap.get(x);
+		}
+		return null;
+	}
+
+	/**
+	 * Get coordinates of all towers wrapped in a list of AbstractMap Entries.
+	 *
+	 * @return list of entries where K is y-coordinate and V is x-coordinate
+	 */
+	public List<AbstractMap.SimpleEntry<Integer, Integer>> getTowerCoordinates() {
+		// This is what you get, Java, when you don't add a tuple- or pair
+		// structure in your standards. No, I'm not using JavaFX Point2D in
+		// non-ui code, or writing my own when it should be implemented in any
+		// modern language standard library.
+		List<AbstractMap.SimpleEntry<Integer, Integer>> list = new ArrayList<>();
+		for (Map.Entry<Integer, Map<Integer, Tower>> yEntry: towers.entrySet()) {
+			for (Map.Entry<Integer, Tower> xEntry: yEntry.getValue().entrySet()) {
+				list.add(new AbstractMap.SimpleEntry<>(yEntry.getKey(), xEntry.getKey()));
+			}
+		}
+		return list;
 	}
 }
