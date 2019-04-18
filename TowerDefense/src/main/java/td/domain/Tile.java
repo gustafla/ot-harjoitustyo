@@ -1,5 +1,8 @@
 package td.domain;
 
+/**
+ * This enumeration represents the types of an element on the map grid.
+ */
 public enum Tile {
 	WALL(0, 0),
 	ROAD_UP(-1, 0),

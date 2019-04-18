@@ -1,5 +1,8 @@
 package td.domain;
 
+/**
+ * This class represents an enemy on the game environment that towers can shoot.
+ */
 public class Enemy {
 	private double positionY;
 	private double positionX;

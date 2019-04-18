@@ -4,6 +4,10 @@ import java.lang.IllegalArgumentException;
 import java.util.List;
 import java.util.ArrayList;
 
+/**
+ * This class represents the game environment on which the enemies can walk and
+ * towers can be placed on.
+ */
 public class Map {
 	private Tile[][] tiles;
 	private int height;

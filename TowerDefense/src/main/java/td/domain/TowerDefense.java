@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Iterator;
 
+/**
+ * This class encapsulates a Tower Defense game's mechanics.
+ */
 public class TowerDefense {
 	private int money;
 	private int health;

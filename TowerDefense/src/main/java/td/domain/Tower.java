@@ -1,5 +1,9 @@
 package td.domain;
 
+/**
+ * This class represents a Tower on the game environment that can shoot enemies
+ * and be placed on the map by the player.
+ */
 public class Tower {
 	private int mapPositionX;
 	private int mapPositionY;

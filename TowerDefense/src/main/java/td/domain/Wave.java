@@ -1,5 +1,9 @@
 package td.domain;
 
+/**
+ * This class represents a wave of multiple Enemies which will spawn one by one,
+ * that must be beaten by the player's towers.
+ */
 public class Wave {
 	private int number;
 	private Enemy enemyType;
