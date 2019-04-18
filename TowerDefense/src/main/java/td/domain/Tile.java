@@ -4,23 +4,23 @@ package td.domain;
  * This enumeration represents the types of an element on the field grid.
  */
 public enum Tile {
-	/** Wall, on which Enemies shouldn't walk on and Towers should be placed on. */
+	/** Wall, on which enemies shouldn't walk on and towers should be placed on. */
 	WALL(0, 0),
-	/** Road which directs Enemies north. */
+	/** Road which directs enemies north. */
 	ROAD_UP(-1, 0),
-	/** Road which directs Enemies south. */
+	/** Road which directs enemies south. */
 	ROAD_DOWN(1, 0),
-	/** Road which directs Enemies west. */
+	/** Road which directs enemies west. */
 	ROAD_LEFT(0, -1),
-	/** Road which directs Enemies east. */
+	/** Road which directs enemies east. */
 	ROAD_RIGHT(0, 1),
-	/** Road which directs Enemies northeast. */
+	/** Road which directs enemies northeast. */
 	ROAD_NE(-1, 1),
-	/** Road which directs Enemies southeast. */
+	/** Road which directs enemies southeast. */
 	ROAD_SE(1, 1),
-	/** Road which directs Enemies southwest. */
+	/** Road which directs enemies southwest. */
 	ROAD_SW(1, -1),
-	/** Road which directs Enemies northwest. */
+	/** Road which directs enemies northwest. */
 	ROAD_NW(-1, -1);
 
 	private int y;
@@ -32,7 +32,7 @@ public enum Tile {
 	}
 
 	/**
-	 * Get the y-component of this Tile's direction for enemies.
+	 * Get the y-component of this tile's direction for enemies.
 	 *
 	 * @return direction y-component
 	 */
@@ -41,7 +41,7 @@ public enum Tile {
 	}
 
 	/**
-	 * Get the x-component of this Tile's direction for enemies.
+	 * Get the x-component of this tile's direction for enemies.
 	 *
 	 * @return direction x-component
 	 */

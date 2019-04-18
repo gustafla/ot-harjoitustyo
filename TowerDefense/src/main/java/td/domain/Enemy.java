@@ -55,7 +55,7 @@ public class Enemy {
 	}
 
 	/**
-	 * Health is the Enemy's current amount of health which may be lowered by
+	 * Get the enemy's current amount of health which may be lowered by
 	 * taking damage.
 	 *
 	 * @return health
@@ -65,7 +65,7 @@ public class Enemy {
 	}
 
 	/**
-	 * Lower Enemy's health, health cannot fall below 0.
+	 * Lower enemy's health, health cannot fall below 0.
 	 *
 	 * @param amount	amount of health to remove
 	 */
@@ -88,9 +88,9 @@ public class Enemy {
 	}
 
 	/**
-	 * Make a clone of this Enemy.
+	 * Make a clone of this enemy.
 	 *
-	 * @return a new copy of the Enemy with full health
+	 * @return a new copy of the enemy with full health
 	 */
 	@Override
 	public Enemy clone() {

@@ -1,7 +1,7 @@
 package td.domain;
 
 /**
- * This class represents a wave of multiple Enemies which will spawn one by one,
+ * This class represents a wave of multiple enemies which will spawn one by one,
  * that must be beaten by the player's towers.
  */
 public class Wave {
@@ -53,7 +53,7 @@ public class Wave {
 	 *
 	 * @param deltaTime		time to advance the spawning by (in seconds)
 	 *
-	 * @return Enemy if an enemy is spawned, otherwise null
+	 * @return enemy if an enemy is spawned, otherwise null
 	 */
 	public Enemy update(double deltaTime) {
 		if (!isSpawningFinished()) {
@@ -69,7 +69,7 @@ public class Wave {
 	}
 
 	/**
-	 * Upgrade Wave to next.
+	 * Upgrade wave to next.
 	 *
 	 * @param enemyType		next wave's spawnable enemy
 	 * @param enemyCount	next wave's number of enemies to spawn

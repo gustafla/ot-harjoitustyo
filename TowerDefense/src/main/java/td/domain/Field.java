@@ -66,9 +66,9 @@ public class Field {
 	/**
 	 * Constructs a new procedurally generated Field.
 	 *
-	 * @param height	number of Tiles in the y-direction
-	 * @param width		number of Tiles in the x-direction
-	 * @param tileSize	the ratio of sub-tile units to Tiles per dimension
+	 * @param height	number of tiles in the y-direction
+	 * @param width		number of tiles in the x-direction
+	 * @param tileSize	the ratio of sub-tile units to tiles per dimension
 	 * @param type		type of field to generate (can only be 0)
 	 */
 	public Field(int height, int width, double tileSize, int type) {
@@ -86,7 +86,7 @@ public class Field {
 	}
 
 	/**
-	 * Get Tile by tile coordinates.
+	 * Get tile by coordinates.
 	 *
 	 * @param y		tile coordinate y-component (0 - height-1)
 	 * @param x		tile coordinate x-component (0 - width-1)
@@ -101,7 +101,7 @@ public class Field {
 	}
 
 	/**
-	 * Get Tile by sub-tile coordinates.
+	 * Get tile by sub-tile coordinates.
 	 *
 	 * @param y		sub-tile position y-component (0 - height*tileSize-EPSILON)
 	 * @param x		sub-tile position x-component (0 - width*tileSize-EPSILON)
@@ -203,7 +203,7 @@ public class Field {
 	}
 
 	/**
-	 * Add a Tower on a tile.
+	 * Add a tower on a tile.
 	 *
 	 * @param y			tile y-coordinate
 	 * @param x			tile x-coordinate
