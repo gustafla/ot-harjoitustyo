@@ -51,7 +51,8 @@ public class TowerDefense {
 	/**
 	 * Check if current wave can be considered ended.
 	 *
-	 * @return true if no more enemies alive and wave's enemy spawning has ended
+	 * @return true if no more enemies alive and wave's enemy spawning has
+	 * ended, otherwise false
 	 */
 	public boolean isWaveOver() {
 		return enemies.isEmpty() && wave.isSpawningFinished();
