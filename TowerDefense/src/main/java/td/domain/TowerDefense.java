@@ -15,6 +15,11 @@ public class TowerDefense {
 	private List<Tower> towers;
 	private List<Enemy> enemies;
 
+	/**
+	 * Constructs a new TowerDefense.
+	 *
+	 * @param map	the map on which to play
+	 */
 	public TowerDefense(Map map) {
 		this.money = 1000;
 		this.health = 1000;
@@ -34,18 +39,36 @@ public class TowerDefense {
 		return money;
 	}
 
+	/**
+	 * Get current wave number (nth).
+	 *
+	 * @return wave number
+	 */
 	public int getWaveNumber() {
 		return wave.getNumber();
 	}
 
+	/**
+	 * Check if current wave can be considered ended.
+	 *
+	 * @return true if no more enemies alive and wave's enemy spawning has ended
+	 */
 	public boolean isWaveOver() {
 		return enemies.isEmpty() && wave.isSpawningFinished();
 	}
 
+	/**
+	 * Start next wave.
+	 */
 	public void nextWave() {
 		wave.upgrade(wave.getEnemyType(), wave.getEnemyCount() + 10);
 	}
 	
+	/**
+	 * Get base's current remaining health.
+	 *
+	 * @return health
+	 */
 	public int getHealth() {
 		return health;
 	}
@@ -62,6 +85,11 @@ public class TowerDefense {
 		return towers;
 	}
 
+	/**
+	 * Add a tower to the game.
+	 *
+	 * @param tower	some tower
+	 */
 	public void addTower(Tower tower) {
 		towers.add(tower);
 	}
@@ -84,6 +112,11 @@ public class TowerDefense {
 		}
 	}
 
+	/**
+	 * Update game state by deltaTime seconds.
+	 *
+	 * @param deltaTime	amount of time
+	 */
 	public void update(double deltaTime) {
 		spawnEnemies(deltaTime);
 
