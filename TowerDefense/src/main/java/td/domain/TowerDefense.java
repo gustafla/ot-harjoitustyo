@@ -89,7 +89,7 @@ public class TowerDefense {
 	/**
 	 * Add a tower to the game.
 	 *
-	 * @param tower	some tower
+	 * @param tower		some tower
 	 */
 	public void addTower(Tower tower) {
 		towers.add(tower);
@@ -116,7 +116,7 @@ public class TowerDefense {
 	/**
 	 * Update game state by deltaTime seconds.
 	 *
-	 * @param deltaTime	amount of time
+	 * @param deltaTime		amount of time
 	 */
 	public void update(double deltaTime) {
 		spawnEnemies(deltaTime);

@@ -55,7 +55,7 @@ public class Tower {
 	/**
 	 * If cooldown is active, advance the cooldown timer
 	 *
-	 * @param t	time to advance the cooldown timer by (seconds)
+	 * @param t		time to advance the cooldown timer by (seconds)
 	 */
 	public void countCooldown(double t) {
 		if (!canShoot()) {
@@ -66,7 +66,7 @@ public class Tower {
 	/**
 	 * If can shoot, damage enemy by power and activate cooldown.
 	 *
-	 * @param enemy	enemy to damage
+	 * @param enemy		enemy to damage
 	 */
 	public void shoot(Enemy enemy) {
 		if (canShoot()) {

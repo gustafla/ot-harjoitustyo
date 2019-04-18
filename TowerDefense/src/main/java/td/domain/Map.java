@@ -22,7 +22,7 @@ public class Map {
 	 * Constructs a new uninitialized Map.
 	 *
 	 * @param height	number of Tiles in the y-direction
-	 * @param width	number of Tiles in the x-direction
+	 * @param width		number of Tiles in the x-direction
 	 * @param tileSize	the ratio of sub-tile units to Tiles per dimension
 	 */
 	public Map(int height, int width, double tileSize) {
@@ -62,9 +62,9 @@ public class Map {
 	 * Constructs a new procedurally generated Map.
 	 *
 	 * @param height	number of Tiles in the y-direction
-	 * @param width	number of Tiles in the x-direction
+	 * @param width		number of Tiles in the x-direction
 	 * @param tileSize	the ratio of sub-tile units to Tiles per dimension
-	 * @param type	type of map to generate (can only be 0)
+	 * @param type		type of map to generate (can only be 0)
 	 */
 	public Map(int height, int width, double tileSize, int type) {
 		this(height, width, tileSize);
@@ -83,8 +83,8 @@ public class Map {
 	/**
 	 * Get Tile by tile coordinates.
 	 *
-	 * @param y	tile coordinate y-component (0 - height-1)
-	 * @param x	tile coordinate x-component (0 - width-1)
+	 * @param y		tile coordinate y-component (0 - height-1)
+	 * @param x		tile coordinate x-component (0 - width-1)
 	 *
 	 * @return Tile
 	 */
@@ -98,8 +98,8 @@ public class Map {
 	/**
 	 * Get Tile by sub-tile coordinates.
 	 *
-	 * @param y	sub-tile position y-component (0 - height*tileSize-EPSILON)
-	 * @param x	sub-tile position x-component (0 - width*tileSize-EPSILON)
+	 * @param y		sub-tile position y-component (0 - height*tileSize-EPSILON)
+	 * @param x		sub-tile position x-component (0 - width*tileSize-EPSILON)
 	 *
 	 * @return Tile
 	 */
@@ -173,8 +173,8 @@ public class Map {
 	/**
 	 * Check if sub-tile coordinates match the base tile location.
 	 *
-	 * @param y	position y-component
-	 * @param x	position x-component
+	 * @param y		position y-component
+	 * @param x		position x-component
 	 *
 	 * @return true if position is on the base tile, otherwise false
 	 */

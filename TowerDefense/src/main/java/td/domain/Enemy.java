@@ -13,10 +13,11 @@ public class Enemy {
 	/**
 	 * Constructs a new Enemy.
 	 *
-	 * @param y	the initial sub-tile y-coordinate
-	 * @param x	the initial sub-tile x-coordinate
-	 * @param maxHealth	the max health (and initial health)
-	 * @param speed	the movement speed multiplier in sub-tile units per second
+	 * @param y				the initial sub-tile y-coordinate
+	 * @param x				the initial sub-tile x-coordinate
+	 * @param maxHealth		the max health (and initial health)
+	 * @param speed			the movement speed multiplier in sub-tile units per
+	 * second
 	 */
 	public Enemy(double y, double x, double maxHealth, double speed) {
 		this.positionY = y;
@@ -78,8 +79,8 @@ public class Enemy {
 	/**
 	 * Translate position in the sub-tile space.
 	 *
-	 * @param y	the y-component which will be added to positionY
-	 * @param x	the x-component which will be added to positionX
+	 * @param y		the y-component which will be added to positionY
+	 * @param x		the x-component which will be added to positionX
 	 */
 	public void move(double y, double x) {
 		positionY += y * speed;
