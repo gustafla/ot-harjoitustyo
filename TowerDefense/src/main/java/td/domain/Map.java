@@ -85,6 +85,8 @@ public class Map {
 	 *
 	 * @param y	tile coordinate y-component (0 - height-1)
 	 * @param x	tile coordinate x-component (0 - width-1)
+	 *
+	 * @return Tile
 	 */
 	public Tile getTile(int y, int x) {
 		if (x >= width || x < 0 || y >= height || y < 0) {
@@ -98,27 +100,35 @@ public class Map {
 	 *
 	 * @param y	sub-tile position y-component (0 - height*tileSize-EPSILON)
 	 * @param x	sub-tile position x-component (0 - width*tileSize-EPSILON)
+	 *
+	 * @return Tile
 	 */
 	public Tile getTileByPosition(double y, double x) {
 		return getTile((int) (y / tileSize), (int) (x / tileSize));
 	}
 
 	/**
-	 * Get number of tiles in x-direction.
-	 */
-	public int getWidth() {
-		return width;
-	}
-
-	/**
 	 * Get number of tiles in y-direction.
+	 *
+	 * @return height in tiles
 	 */
 	public int getHeight() {
 		return height;
 	}
 
 	/**
+	 * Get number of tiles in x-direction.
+	 *
+	 * @return width in tiles
+	 */
+	public int getWidth() {
+		return width;
+	}
+
+	/**
 	 * Get ratio of sub-tile units to tiles.
+	 *
+	 * @return tile size
 	 */
 	public double getTileSize() {
 		return tileSize;
@@ -126,6 +136,8 @@ public class Map {
 
 	/**
 	 * Get spawn position (sub-tile) y-component.
+	 *
+	 * @return spawn position y-component
 	 */
 	public double getSpawnPositionY() {
 		return spawnPositionY;
@@ -133,6 +145,8 @@ public class Map {
 
 	/**
 	 * Get spawn position (sub-tile) x-component.
+	 *
+	 * @return spawn position x-component
 	 */
 	public double getSpawnPositionX() {
 		return spawnPositionX;
@@ -140,6 +154,8 @@ public class Map {
 
 	/**
 	 * Get base tile coordinate (tile space) y-component.
+	 *
+	 * @return base tile coordinate y-component
 	 */
 	public int getBaseTileY() {
 		return baseTileY;
@@ -147,6 +163,8 @@ public class Map {
 
 	/**
 	 * Get base tile coordinate (tile space) x-component.
+	 *
+	 * @return base tile coordinate x-component
 	 */
 	public int getBaseTileX() {
 		return baseTileX;

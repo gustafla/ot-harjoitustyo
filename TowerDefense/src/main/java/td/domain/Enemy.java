@@ -28,6 +28,8 @@ public class Enemy {
 
 	/**
 	 * Get the y-component of position in the sub-tile space.
+	 *
+	 * @return position y-component
 	 */
 	public double getPositionY() {
 		return positionY;
@@ -35,6 +37,8 @@ public class Enemy {
 
 	/**
 	 * Get the x-component of position in the sub-tile space.
+	 *
+	 * @return position x-component
 	 */
 	public double getPositionX() {
 		return positionX;
@@ -83,6 +87,8 @@ public class Enemy {
 	}
 
 	/**
+	 * Make a clone of this Enemy.
+	 *
 	 * @return a new copy of the Enemy with full health
 	 */
 	@Override
