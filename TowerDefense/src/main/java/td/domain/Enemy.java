@@ -18,22 +18,44 @@ public class Enemy {
 		this.speed = speed;
 	}
 
+	/**
+	 * @return y-component of position in the map space
+	 */
 	public double getPositionY() {
 		return positionY;
 	}
 
+	/**
+	 * @return x-component of position in the map space
+	 */
 	public double getPositionX() {
 		return positionX;
 	}
 
+	/**
+	 * Max health is the amount of health Enemy spawns with.
+	 * 
+	 * @return max health
+	 */
 	public double getMaxHealth() {
 		return maxHealth;
 	}
 
+	/**
+	 * Health is the Enemy's current amount of health which may be lowered by
+	 * taking damage.
+	 *
+	 * @return health
+	 */
 	public double getHealth() {
 		return health;
 	}
 
+	/**
+	 * Lower Enemy's health, health cannot fall below 0.
+	 *
+	 * @param amount	amount of health to remove
+	 */
 	public void takeDamage(double amount) {
 		health -= amount;
 		if (health < 0.) {
@@ -41,12 +63,20 @@ public class Enemy {
 		}
 	}
 
-	
+	/**
+	 * Translate position in the map space.
+	 *
+	 * @param y	the y-component which will be added to positionY
+	 * @param x	the x-component which will be added to positionX
+	 */
 	public void move(double y, double x) {
 		positionY += y * speed;
 		positionX += x * speed;
 	}
 
+	/**
+	 * @return a new copy of the Enemy with full health
+	 */
 	@Override
 	public Enemy clone() {
 		return new Enemy(
