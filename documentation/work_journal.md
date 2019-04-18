@@ -12,5 +12,6 @@
 | --04-14 | 5      | Lisää käyttöliittymää ja oleellisia pelimekaniikkoja (viholliset vahingoittaa yms.) |
 | --04-15 | 2      | Lisää testejä |
 | --04-16 | 1      | Arkkitehtuurikuvauksen päivitys, releasen luominen |
+| --04-18 | 2      | Javadoc kaikille domain-luokille |
 
-Summa: 20 tuntia
+Summa: 22 tuntia
