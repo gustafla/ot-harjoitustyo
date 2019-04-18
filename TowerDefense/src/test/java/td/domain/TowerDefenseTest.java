@@ -30,11 +30,6 @@ public class TowerDefenseTest {
 	}
 
 	@Test
-	public void constructedWithNoTowers() {
-		assertTrue(td.getTowers().isEmpty());
-	}
-
-	@Test
 	public void constructedWithNoEnemies() {
 		assertTrue(td.getEnemies().isEmpty());
 	}
@@ -42,14 +37,6 @@ public class TowerDefenseTest {
 	@Test
 	public void getMapGivesCorrectMap() {
 		assertEquals(map, td.getMap());
-	}
-
-	@Test
-	public void addTowerWorks() {
-		Tower tower = new Tower(0, 0, 10, 600, 0.2);
-		td.addTower(tower);
-		assertEquals(1, td.getTowers().size());
-		assertTrue(td.getTowers().contains(tower));
 	}
 
 	@Test

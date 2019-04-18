@@ -5,8 +5,6 @@ package td.domain;
  * and be placed on the map by the player.
  */
 public class Tower {
-	private int tilePositionY;
-	private int tilePositionX;
 	private double range;
 	private double power;
 	private double cooldown;
@@ -15,27 +13,15 @@ public class Tower {
 	/**
 	 * Constructs a new Tower.
 	 *
-	 * @param y			position tile coordinate y-component
-	 * @param x			position tile coordinate x-component
 	 * @param range		shooting reach in sub-tile units
 	 * @param power		amount of damage per shot
 	 * @param cooldown	delay time between shots in seconds
 	 */
-	public Tower(int y, int x, double range, double power, double cooldown) {
-		this.tilePositionY = y;
-		this.tilePositionX = x;
+	public Tower(double range, double power, double cooldown) {
 		this.range = range;
 		this.power = power;
 		this.cooldown = cooldown;
 		this.cooldownNow = 0.;
-	}
-
-	public int getTilePositionY() {
-		return tilePositionY;
-	}
-
-	public int getTilePositionX() {
-		return tilePositionX;
 	}
 
 	public double getRange() {

@@ -12,7 +12,7 @@ public class TowerTest {
 
 	@Before
 	public void setUp() {
-		tower = new Tower(0, 0, 10, 5, 1.);
+		tower = new Tower(10, 5, 1.);
 		enemy = new Enemy(0, 0, 10, 10);
 	}
 

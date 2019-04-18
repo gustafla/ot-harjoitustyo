@@ -12,7 +12,6 @@ public class TowerDefense {
 	private int health;
 	private Map map;
 	private Wave wave;
-	private List<Tower> towers;
 	private List<Enemy> enemies;
 
 	/**
@@ -25,7 +24,6 @@ public class TowerDefense {
 		this.health = 1000;
 		this.map = map;
 		this.enemies = new ArrayList<>(100);
-		this.towers = new ArrayList<>(20);
 
 		Enemy firstEnemyType = new Enemy(
 				map.getSpawnPositionY(),
@@ -82,19 +80,6 @@ public class TowerDefense {
 		return enemies;
 	}
 
-	public List<Tower> getTowers() {
-		return towers;
-	}
-
-	/**
-	 * Add a tower to the game.
-	 *
-	 * @param tower		some tower
-	 */
-	public void addTower(Tower tower) {
-		towers.add(tower);
-	}
-
 	private void spawnEnemies(double deltaTime) {
 		Enemy newEnemy = wave.update(deltaTime);
 		if (newEnemy != null) {
@@ -132,11 +117,5 @@ public class TowerDefense {
 				health--;
 			}
 		}
-
-		// check all towers for ready to shoot and find enemy for each in range
-		for (Tower tower: towers) {
-			;
-		}
-		
 	}
 }
