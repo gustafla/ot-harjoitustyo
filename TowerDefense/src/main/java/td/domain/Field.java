@@ -3,13 +3,16 @@ package td.domain;
 import java.lang.IllegalArgumentException;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Map;
+import java.util.HashMap;
 
 /**
  * This class represents the game environment on which the enemies can walk and
  * towers can be placed on.
  */
-public class Map {
+public class Field {
 	private Tile[][] tiles;
+	private Map<Integer, Map<Integer, Tower>> towers;
 	private int height;
 	private int width;
 	private double tileSize;
@@ -19,13 +22,13 @@ public class Map {
 	private int baseTileY;
 
 	/**
-	 * Constructs a new uninitialized Map.
+	 * Constructs a new uninitialized Field.
 	 *
 	 * @param height	number of Tiles in the y-direction
 	 * @param width		number of Tiles in the x-direction
 	 * @param tileSize	the ratio of sub-tile units to Tiles per dimension
 	 */
-	public Map(int height, int width, double tileSize) {
+	public Field(int height, int width, double tileSize) {
 		this.tiles = new Tile[height][width];
 		for (int i = 0; i < height; i++) {
 			for (int j = 0; j < width; j++) {
@@ -35,6 +38,7 @@ public class Map {
 		this.height = height;
 		this.width = width;
 		this.tileSize = tileSize;
+		this.towers = new HashMap<>();
 	}
 
 	private void generateType0() {
@@ -59,14 +63,14 @@ public class Map {
 	}
 
 	/**
-	 * Constructs a new procedurally generated Map.
+	 * Constructs a new procedurally generated Field.
 	 *
 	 * @param height	number of Tiles in the y-direction
 	 * @param width		number of Tiles in the x-direction
 	 * @param tileSize	the ratio of sub-tile units to Tiles per dimension
-	 * @param type		type of map to generate (can only be 0)
+	 * @param type		type of field to generate (can only be 0)
 	 */
-	public Map(int height, int width, double tileSize, int type) {
+	public Field(int height, int width, double tileSize, int type) {
 		this(height, width, tileSize);
 
 		if (type < 0) {
@@ -181,5 +185,41 @@ public class Map {
 	public boolean isPositionAtBase(double y, double x) {
 		return (int) (y / tileSize) == baseTileY
 			&& (int) (x / tileSize) == baseTileX;
+	}
+
+	/**
+	 * Check if tile can take a new tower.
+	 *
+	 * @param y		tile y-coordinate
+	 * @param x		tile x-coordinate
+	 *
+	 * @return true if can add a tower, otherwise false
+	 */
+	public boolean isTileFree(int y, int x) {
+		Map<Integer, Tower> xMap = towers.get(y);
+		return getTile(y, x) == Tile.WALL
+			&& (xMap == null || xMap.get(x) == null);
+	}
+
+	/**
+	 * Add a Tower on a tile.
+	 *
+	 * @param y			tile y-coordinate
+	 * @param x			tile x-coordinate
+	 * @param tower		tower to add
+	 *
+	 * @return true if tower was added, otherwise false
+	 */
+	public boolean addTower(int y, int x, Tower tower) {
+		boolean free = isTileFree(y, x);
+		if (free) {
+			towers.putIfAbsent(y, new HashMap<>());
+			towers.get(y).put(x, tower);
+		}
+		return free;
+	}
+
+	public Map<Integer, Map<Integer, Tower>> getTowers() {
+		return towers;
 	}
 }

@@ -10,24 +10,24 @@ import java.util.Iterator;
 public class TowerDefense {
 	private int money;
 	private int health;
-	private Map map;
+	private Field field;
 	private Wave wave;
 	private List<Enemy> enemies;
 
 	/**
 	 * Constructs a new TowerDefense.
 	 *
-	 * @param map	the map on which to play
+	 * @param field		the field on which to play
 	 */
-	public TowerDefense(Map map) {
+	public TowerDefense(Field field) {
 		this.money = 1000;
 		this.health = 1000;
-		this.map = map;
+		this.field = field;
 		this.enemies = new ArrayList<>(100);
 
 		Enemy firstEnemyType = new Enemy(
-				map.getSpawnPositionY(),
-				map.getSpawnPositionX(),
+				field.getSpawnPositionY(),
+				field.getSpawnPositionX(),
 				10, // health,
 				40.); // speed
 		this.wave = new Wave(firstEnemyType, 0);
@@ -72,8 +72,8 @@ public class TowerDefense {
 		return health;
 	}
 
-	public Map getMap() {
-		return map;
+	public Field getField() {
+		return field;
 	}
 
 	public List<Enemy> getEnemies() {
@@ -89,7 +89,7 @@ public class TowerDefense {
 
 	private void moveEnemies(double deltaTime) {
 		for (Enemy enemy: enemies) {
-			Tile under = map.getTileByPosition(enemy.getPositionY(), enemy.getPositionX());
+			Tile under = field.getTileByPosition(enemy.getPositionY(), enemy.getPositionX());
 			if (under == Tile.WALL) {
 				throw new RuntimeException("Enemy in wall.");
 			} else {
@@ -112,7 +112,7 @@ public class TowerDefense {
 		Iterator<Enemy> it = enemies.iterator();
 		while (it.hasNext()) {
 			Enemy e = it.next();
-			if (map.isPositionAtBase(e.getPositionY(), e.getPositionX())) {
+			if (field.isPositionAtBase(e.getPositionY(), e.getPositionX())) {
 				it.remove();
 				health--;
 			}

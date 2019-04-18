@@ -2,7 +2,7 @@ package td.domain;
 
 /**
  * This class represents a Tower on the game environment that can shoot enemies
- * and be placed on the map by the player.
+ * and be placed on the field by the player.
  */
 public class Tower {
 	private double range;

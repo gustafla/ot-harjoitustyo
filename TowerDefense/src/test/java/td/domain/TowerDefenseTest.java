@@ -5,13 +5,13 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class TowerDefenseTest {
-	Map map;
+	Field field;
 	TowerDefense td;
 
 	@Before
 	public void setUp() {
-		map = new Map(64, 64, 10, 0);
-		td = new TowerDefense(map);
+		field = new Field(64, 64, 10, 0);
+		td = new TowerDefense(field);
 	}
 
 	@Test
@@ -35,8 +35,8 @@ public class TowerDefenseTest {
 	}
 
 	@Test
-	public void getMapGivesCorrectMap() {
-		assertEquals(map, td.getMap());
+	public void getFieldGivesCorrectField() {
+		assertEquals(field, td.getField());
 	}
 
 	@Test

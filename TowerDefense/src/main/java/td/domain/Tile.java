@@ -1,7 +1,7 @@
 package td.domain;
 
 /**
- * This enumeration represents the types of an element on the map grid.
+ * This enumeration represents the types of an element on the field grid.
  */
 public enum Tile {
 	/** Wall, on which Enemies shouldn't walk on and Towers should be placed on. */

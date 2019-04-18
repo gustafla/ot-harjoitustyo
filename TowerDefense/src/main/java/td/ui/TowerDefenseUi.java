@@ -1,7 +1,7 @@
 package td.ui;
 
 import td.domain.TowerDefense;
-import td.domain.Map;
+import td.domain.Field;
 import td.domain.Tile;
 import td.domain.Enemy;
 import javafx.application.Application;
@@ -37,8 +37,8 @@ public class TowerDefenseUi extends Application {
 		healthLabel.setText("Health: " + towerDefense.getHealth());
 	}
 
-	private void drawMap() {
-		Map m = towerDefense.getMap();
+	private void drawField() {
+		Field m = towerDefense.getField();
 		for (int i = 0; i < m.getHeight(); i++) {
 			for (int j = 0; j < m.getWidth(); j++) {
 				if (i == (int) (m.getSpawnPositionY() / TILE_SIZE)
@@ -69,12 +69,12 @@ public class TowerDefenseUi extends Application {
 
 	@Override
 	public void init() {
-		Map map = new Map(
+		Field field = new Field(
 				CANVAS_HEIGHT / TILE_SIZE,
 				CANVAS_WIDHT / TILE_SIZE,
 				TILE_SIZE,
 				0);
-		towerDefense = new TowerDefense(map);
+		towerDefense = new TowerDefense(field);
 	}
 
 	@Override
@@ -120,7 +120,7 @@ public class TowerDefenseUi extends Application {
 				updateLabels();
 
 				gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
-				drawMap();
+				drawField();
 				drawEnemies();
 
 				if (towerDefense.isWaveOver()) {
