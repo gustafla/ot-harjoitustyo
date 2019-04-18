@@ -93,7 +93,7 @@ public class TowerDefense {
 		Iterator<Enemy> it = enemies.iterator();
 		while (it.hasNext()) {
 			Enemy e = it.next();
-			if (map.positionIsAtBase(e.getPositionY(), e.getPositionX())) {
+			if (map.isPositionAtBase(e.getPositionY(), e.getPositionX())) {
 				it.remove();
 				health--;
 			}

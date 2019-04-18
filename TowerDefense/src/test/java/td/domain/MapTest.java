@@ -64,9 +64,9 @@ public class MapTest {
 	public void type0BasePositionIsAtBase() {
 		double y = map.getBaseTileY() * map.getTileSize();
 		double x = map.getBaseTileX() * map.getTileSize();
-		assertFalse(map.positionIsAtBase(y + 11, x));
-		assertFalse(map.positionIsAtBase(y + 0.1, x + 11));
-		assertTrue(map.positionIsAtBase(y + 0.1, x + 0.1));
+		assertFalse(map.isPositionAtBase(y + 11, x));
+		assertFalse(map.isPositionAtBase(y + 0.1, x + 11));
+		assertTrue(map.isPositionAtBase(y + 0.1, x + 0.1));
 	}
 
 	@Test

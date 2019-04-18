@@ -10,6 +10,14 @@ public class Enemy {
 	private double health;
 	private double speed;
 
+	/**
+	 * Constructs a new Enemy.
+	 *
+	 * @param y	the initial sub-tile y-coordinate
+	 * @param x	the initial sub-tile x-coordinate
+	 * @param maxHealth	the max health (and initial health)
+	 * @param speed	the movement speed multiplier in sub-tile units per second
+	 */
 	public Enemy(double y, double x, double maxHealth, double speed) {
 		this.positionY = y;
 		this.positionX = x;
@@ -19,14 +27,14 @@ public class Enemy {
 	}
 
 	/**
-	 * @return y-component of position in the map space
+	 * Get the y-component of position in the sub-tile space.
 	 */
 	public double getPositionY() {
 		return positionY;
 	}
 
 	/**
-	 * @return x-component of position in the map space
+	 * Get the x-component of position in the sub-tile space.
 	 */
 	public double getPositionX() {
 		return positionX;
@@ -34,7 +42,7 @@ public class Enemy {
 
 	/**
 	 * Max health is the amount of health Enemy spawns with.
-	 * 
+	 *
 	 * @return max health
 	 */
 	public double getMaxHealth() {
@@ -64,7 +72,7 @@ public class Enemy {
 	}
 
 	/**
-	 * Translate position in the map space.
+	 * Translate position in the sub-tile space.
 	 *
 	 * @param y	the y-component which will be added to positionY
 	 * @param x	the x-component which will be added to positionX

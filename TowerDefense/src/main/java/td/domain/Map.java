@@ -18,6 +18,13 @@ public class Map {
 	private int baseTileX;
 	private int baseTileY;
 
+	/**
+	 * Constructs a new uninitialized Map.
+	 *
+	 * @param height	number of Tiles in the y-direction
+	 * @param width	number of Tiles in the x-direction
+	 * @param tileSize	the ratio of sub-tile units to Tiles per dimension
+	 */
 	public Map(int height, int width, double tileSize) {
 		this.tiles = new Tile[height][width];
 		for (int i = 0; i < height; i++) {
@@ -51,6 +58,14 @@ public class Map {
 		baseTileX = width - 1;
 	}
 
+	/**
+	 * Constructs a new procedurally generated Map.
+	 *
+	 * @param height	number of Tiles in the y-direction
+	 * @param width	number of Tiles in the x-direction
+	 * @param tileSize	the ratio of sub-tile units to Tiles per dimension
+	 * @param type	type of map to generate (can only be 0)
+	 */
 	public Map(int height, int width, double tileSize, int type) {
 		this(height, width, tileSize);
 
@@ -65,6 +80,12 @@ public class Map {
 		generateType0();
 	}
 
+	/**
+	 * Get Tile by tile coordinates.
+	 *
+	 * @param y	tile coordinate y-component (0 - height-1)
+	 * @param x	tile coordinate x-component (0 - width-1)
+	 */
 	public Tile getTile(int y, int x) {
 		if (x >= width || x < 0 || y >= height || y < 0) {
 			throw new IllegalArgumentException("Tile (y = " + y + ", x = " + x + ") doesn't exist.");
@@ -72,39 +93,74 @@ public class Map {
 		return tiles[y][x];
 	}
 
+	/**
+	 * Get Tile by sub-tile coordinates.
+	 *
+	 * @param y	sub-tile position y-component (0 - height*tileSize-EPSILON)
+	 * @param x	sub-tile position x-component (0 - width*tileSize-EPSILON)
+	 */
 	public Tile getTileByPosition(double y, double x) {
 		return getTile((int) (y / tileSize), (int) (x / tileSize));
 	}
 
+	/**
+	 * Get number of tiles in x-direction.
+	 */
 	public int getWidth() {
 		return width;
 	}
 
+	/**
+	 * Get number of tiles in y-direction.
+	 */
 	public int getHeight() {
 		return height;
 	}
 
+	/**
+	 * Get ratio of sub-tile units to tiles.
+	 */
 	public double getTileSize() {
 		return tileSize;
 	}
 
+	/**
+	 * Get spawn position (sub-tile) y-component.
+	 */
 	public double getSpawnPositionY() {
 		return spawnPositionY;
 	}
 
+	/**
+	 * Get spawn position (sub-tile) x-component.
+	 */
 	public double getSpawnPositionX() {
 		return spawnPositionX;
 	}
 
+	/**
+	 * Get base tile coordinate (tile space) y-component.
+	 */
 	public int getBaseTileY() {
 		return baseTileY;
 	}
 
+	/**
+	 * Get base tile coordinate (tile space) x-component.
+	 */
 	public int getBaseTileX() {
 		return baseTileX;
 	}
 
-	public boolean positionIsAtBase(double y, double x) {
+	/**
+	 * Check if sub-tile coordinates match the base tile location.
+	 *
+	 * @param y	position y-component
+	 * @param x	position x-component
+	 *
+	 * @return true if position is on the base tile, otherwise false
+	 */
+	public boolean isPositionAtBase(double y, double x) {
 		return (int) (y / tileSize) == baseTileY
 			&& (int) (x / tileSize) == baseTileX;
 	}
