@@ -5,28 +5,28 @@ package td.domain;
  * and be placed on the map by the player.
  */
 public class Tower {
-	private int mapPositionX;
-	private int mapPositionY;
+	private int tilePositionY;
+	private int tilePositionX;
 	private double range;
 	private double power;
 	private double cooldown;
 	private double cooldownNow;
 
-	public Tower(int x, int y, double range, double power, double cooldown) {
-		this.mapPositionX = x;
-		this.mapPositionY = y;
+	public Tower(int y, int x, double range, double power, double cooldown) {
+		this.tilePositionY = y;
+		this.tilePositionX = x;
 		this.range = range;
 		this.power = power;
 		this.cooldown = cooldown;
 		this.cooldownNow = 0.;
 	}
 
-	public int getMapPositionX() {
-		return mapPositionX;
+	public int getTilePositionY() {
+		return tilePositionY;
 	}
 
-	public int getMapPositionY() {
-		return mapPositionY;
+	public int getTilePositionX() {
+		return tilePositionX;
 	}
 
 	public double getRange() {
