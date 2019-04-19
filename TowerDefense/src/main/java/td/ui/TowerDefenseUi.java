@@ -31,7 +31,7 @@ public class TowerDefenseUi extends Application {
 	private Label healthLabel;
 	private Button waveButton;
 	private Button towerButton;
-	private boolean placingTower;
+	private Tower placingTower;
 
 	private double canvasMouseY;
 	private double canvasMouseX;
@@ -43,6 +43,14 @@ public class TowerDefenseUi extends Application {
 		moneyLabel.setText("Money: " + towerDefense.getMoney());
 		waveLabel.setText("Wave: " + towerDefense.getWaveNumber());
 		healthLabel.setText("Health: " + towerDefense.getHealth());
+	}
+
+	private void updateTowerButtonText() {
+		if (placingTower == null) {
+			towerButton.setText("Buy tower");
+		} else {
+			towerButton.setText("Cancel buying");
+		}
 	}
 
 	private void drawField() {
@@ -74,7 +82,7 @@ public class TowerDefenseUi extends Application {
 		}
 
 		// Draw tower mouseOver
-		if (placingTower) {
+		if (placingTower != null) {
 			if (towerDefense.getField().isPositionFree(canvasMouseY, canvasMouseX)) {
 				gc.setFill(Color.rgb(0, 255, 0, 0.4));
 			} else {
@@ -176,23 +184,36 @@ public class TowerDefenseUi extends Application {
 		});
 
 		// Set up tower shop
-		placingTower = true;
+		placingTower = null;
 		towerButton = new Button();
 		top.getChildren().add(towerButton);
 		towerButton.setOnAction((ActionEvent event) -> {
-			placingTower = !placingTower;
-			if (placingTower) {
-				towerButton.setText("Cancel purchase");
+			if (placingTower == null) {
+				placingTower = towerDefense.buyTower();
 			} else {
-				towerButton.setText("Buy tower");
+				towerDefense.refundTower();
+				placingTower = null;
 			}
+			updateTowerButtonText();
 		});
-		towerButton.fire();
 
-		// Set up canvas placingTower mouseMoved drawing
+		// Set up canvas placingTower mouseMoved
 		canvas.setOnMouseMoved((MouseEvent event) -> {
 			canvasMouseY = event.getY();
 			canvasMouseX = event.getX();
+		});
+
+		// Set up canvas placingTower mousePressed
+		canvas.setOnMousePressed((MouseEvent event) -> {
+			if (placingTower != null) {
+				if (towerDefense.getField().addTowerByPosition(
+							event.getY(),
+							event.getX(),
+							placingTower)) {
+					placingTower = null;
+					updateTowerButtonText();
+				}
+			}
 		});
 
 		primaryStage.setScene(new Scene(root));

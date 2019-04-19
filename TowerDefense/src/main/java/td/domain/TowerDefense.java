@@ -13,6 +13,9 @@ public class TowerDefense {
 	private Field field;
 	private Wave wave;
 	private List<Enemy> enemies;
+	private int lastPurchasePrice;
+
+	private final int TOWER_PRICE = 10;
 
 	/**
 	 * Constructs a new TowerDefense.
@@ -31,6 +34,8 @@ public class TowerDefense {
 				10, // health,
 				40.); // speed
 		this.wave = new Wave(firstEnemyType, 0);
+
+		this.lastPurchasePrice = 0;
 	}
 
 	public int getMoney() {
@@ -117,5 +122,27 @@ public class TowerDefense {
 				health--;
 			}
 		}
+	}
+
+	/**
+	 * Remove tower price (10 for now) from money and return a new tower.
+	 *
+	 * @return a new tower, or null if there isn't enough money
+	 */
+	public Tower buyTower() {
+		if (money < TOWER_PRICE) {
+			return null;
+		}
+		lastPurchasePrice = TOWER_PRICE;
+		money -= TOWER_PRICE;
+		return new Tower(60, 5, 0.8);
+	}
+
+	/**
+	 * Add last tower purchase price to money, works only once per purchase.
+	 */
+	public void refundTower() {
+		money += lastPurchasePrice;
+		lastPurchasePrice = 0;
 	}
 }
