@@ -13,5 +13,6 @@
 | --04-15 | 2      | Lisää testejä |
 | --04-16 | 1      | Arkkitehtuurikuvauksen päivitys, releasen luominen |
 | --04-18 | 5      | Javadoc kaikille domain-luokille, tornien piirtäminen |
+| --04-19 | 2      | Tornien osto, tornit ampuu vihollisia |
 
-Summa: 25 tuntia
+Summa: 27 tuntia
