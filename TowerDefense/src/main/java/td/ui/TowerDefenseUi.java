@@ -88,10 +88,13 @@ public class TowerDefenseUi extends Application {
 			} else {
 				gc.setFill(Color.rgb(255, 0, 0, 0.4));
 			}
-			gc.fillRect(
-					(int) (canvasMouseX / TILE_SIZE) * TILE_SIZE,
-					(int) (canvasMouseY / TILE_SIZE) * TILE_SIZE,
-					TILE_SIZE, TILE_SIZE);
+			double tileMidX = (int) (canvasMouseX / TILE_SIZE) * TILE_SIZE + TILE_SIZE / 2;
+			double tileMidY = (int) (canvasMouseY / TILE_SIZE) * TILE_SIZE + TILE_SIZE / 2;
+			gc.fillOval(
+					tileMidX - placingTower.getRange(),
+					tileMidY - placingTower.getRange(),
+					placingTower.getRange() * 2,
+					placingTower.getRange() * 2);
 		}
 	}
 
@@ -186,6 +189,7 @@ public class TowerDefenseUi extends Application {
 		// Set up tower shop
 		placingTower = null;
 		towerButton = new Button();
+		updateTowerButtonText();
 		top.getChildren().add(towerButton);
 		towerButton.setOnAction((ActionEvent event) -> {
 			if (placingTower == null) {
