@@ -13,15 +13,15 @@ estävät vihollisjoukkojen hyökkäyksen tukikohtaan.
 - [x] Viholliset liikkuvat hyökkäysaaltoina reittiä pitkin tukikohtaan
 - [x] Hyökkäysaaltojen välissä on tauko
 - [x] Perille päässyt vihollinen vahingoittaa tukikohtaa kerran ja katoaa
-- [ ] Pelaaja voi ostaa ja sijoittaa tykkejä kentälle
-- [ ] Tykit ampuvat vihollisia
+- [x] Pelaaja voi ostaa ja sijoittaa tykkejä kentälle
+- [x] Tykit ampuvat vihollisia
 - [ ] Peli päättyy jos tukikohta tuhotaan
 
 ## Kehitysideoita
 
 - [ ] Pelin voi laittaa tauolle jolloin pelaaja ei näe mitään eikä voi tehdä mitään
 - [ ] Pelin voi tallentaa tiedostoon ja jatkaa myöhemmin
-	- [ ] Vain hyökkäysaaltojen välissä mieluiten
+	- Vain hyökkäysaaltojen välissä mieluiten
 - [x] Viholliset vahvistuvat ja/tai niiden määrä nousee
 - [ ] Tykkejä voi vahvistaa
 - [ ] Erilaisia reittejä/kenttiä
