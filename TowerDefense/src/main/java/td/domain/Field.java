@@ -203,6 +203,18 @@ public class Field {
 	}
 
 	/**
+	 * Check if tile under sub-tile position can take a new tower.
+	 *
+	 * @param y		position y-coordinate
+	 * @param x		position x-coordinate
+	 *
+	 * @return true if can add a tower, otherwise false
+	 */
+	public boolean isPositionFree(double y, double x) {
+		return isTileFree((int) (y / tileSize), (int) (x / tileSize));
+	}
+
+	/**
 	 * Add a tower on a tile.
 	 *
 	 * @param y			tile y-coordinate
@@ -218,6 +230,19 @@ public class Field {
 			towers.get(y).put(x, tower);
 		}
 		return free;
+	}
+
+	/**
+	 * Add a tower on a tile under sub-tile position.
+	 *
+	 * @param y			position y-coordinate
+	 * @param x			position x-coordinate
+	 * @param tower		tower to add
+	 *
+	 * @return true if tower was added, otherwise false
+	 */
+	public boolean addTowerByPosition(double y, double x, Tower tower) {
+		return addTower((int) (y / tileSize), (int) (x / tileSize), tower);
 	}
 
 	/**

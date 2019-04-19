@@ -9,6 +9,7 @@ import td.domain.Tower;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
+import javafx.scene.input.*;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.animation.*;
@@ -29,6 +30,11 @@ public class TowerDefenseUi extends Application {
 	private Label waveLabel;
 	private Label healthLabel;
 	private Button waveButton;
+	private Button towerButton;
+	private boolean placingTower;
+
+	private double canvasMouseY;
+	private double canvasMouseX;
 
 	private Canvas canvas;
 	private GraphicsContext gc;
@@ -65,6 +71,19 @@ public class TowerDefenseUi extends Application {
 			int y = coordinates.getKey() * TILE_SIZE + TILE_SIZE / 2;
 			int x = coordinates.getValue() * TILE_SIZE + TILE_SIZE / 2;
 			gc.fillPolygon(new double[]{x-5, x, x+5}, new double[]{y+5, y-5, y+5}, 3);
+		}
+
+		// Draw tower mouseOver
+		if (placingTower) {
+			if (towerDefense.getField().isPositionFree(canvasMouseY, canvasMouseX)) {
+				gc.setFill(Color.rgb(0, 255, 0, 0.4));
+			} else {
+				gc.setFill(Color.rgb(255, 0, 0, 0.4));
+			}
+			gc.fillRect(
+					(int) (canvasMouseX / TILE_SIZE) * TILE_SIZE,
+					(int) (canvasMouseY / TILE_SIZE) * TILE_SIZE,
+					TILE_SIZE, TILE_SIZE);
 		}
 	}
 
@@ -154,6 +173,26 @@ public class TowerDefenseUi extends Application {
 				at.start();
 				waveButton.setVisible(false);
 			}
+		});
+
+		// Set up tower shop
+		placingTower = true;
+		towerButton = new Button();
+		top.getChildren().add(towerButton);
+		towerButton.setOnAction((ActionEvent event) -> {
+			placingTower = !placingTower;
+			if (placingTower) {
+				towerButton.setText("Cancel purchase");
+			} else {
+				towerButton.setText("Buy tower");
+			}
+		});
+		towerButton.fire();
+
+		// Set up canvas placingTower mouseMoved drawing
+		canvas.setOnMouseMoved((MouseEvent event) -> {
+			canvasMouseY = event.getY();
+			canvasMouseX = event.getX();
 		});
 
 		primaryStage.setScene(new Scene(root));
