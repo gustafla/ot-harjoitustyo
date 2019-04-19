@@ -1,11 +1,15 @@
 package td.ui;
 
 import java.util.AbstractMap;
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Iterator;
 import td.domain.TowerDefense;
 import td.domain.Field;
 import td.domain.Tile;
 import td.domain.Enemy;
 import td.domain.Tower;
+import td.domain.Shot;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
@@ -23,8 +27,11 @@ public class TowerDefenseUi extends Application {
 	private final int CANVAS_WIDHT = 800;
 	private final int CANVAS_HEIGHT = 600;
 	private final int TILE_SIZE = 20;
+	private final double SHOT_FADE_TIME = 1.;
 	
 	private TowerDefense towerDefense;
+
+	private List<Shot> shots;
 
 	private Label moneyLabel;
 	private Label waveLabel;
@@ -109,8 +116,18 @@ public class TowerDefenseUi extends Application {
 		}
 	}
 
+	private void drawShots() {
+		gc.setLineWidth(3);
+		for (Shot shot: shots) {
+			double timeLeft = (SHOT_FADE_TIME - shot.getTime()) / SHOT_FADE_TIME;
+			gc.setStroke(Color.rgb(255, 255, 0, timeLeft));
+			gc.strokeLine(shot.getX1(), shot.getY1(), shot.getX2(), shot.getY2());
+		}
+	}
+
 	@Override
 	public void init() {
+		shots = new ArrayList<>();
 		Field field = new Field(
 				CANVAS_HEIGHT / TILE_SIZE,
 				CANVAS_WIDHT / TILE_SIZE,
@@ -157,13 +174,23 @@ public class TowerDefenseUi extends Application {
 					lastFramecountTimeNs = currentTimeNs;
 				}
 
-				towerDefense.update(deltaTime);
+				shots.addAll(towerDefense.update(deltaTime));
+				
+				Iterator<Shot> it = shots.iterator();
+				while (it.hasNext()) {
+					Shot shot = it.next();
+					shot.updateTime(deltaTime);
+					if (shot.getTime() >= SHOT_FADE_TIME) {
+						it.remove();
+					}
+				}
 
 				updateLabels();
 
 				gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
 				drawField();
 				drawEnemies();
+				drawShots();
 
 				if (towerDefense.isWaveOver()) {
 					waveButton.setText("Next wave");

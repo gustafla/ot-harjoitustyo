@@ -122,7 +122,8 @@ public class TowerDefense {
 		return Math.sqrt(y * y + x * x);
 	}
 
-	private void checkTowerTargets(double deltaTime) {
+	private List<Shot> checkTowerTargets(double deltaTime) {
+		List<Shot> shots = new ArrayList<>();
 		for (AbstractMap.SimpleEntry<Double, Double> pos: field.getTowerPositions()) {
 			double y = pos.getKey();
 			double x = pos.getValue();
@@ -132,6 +133,7 @@ public class TowerDefense {
 				for (Enemy e: enemies) {
 					if (dist(y, x, e.getPositionY(), e.getPositionX()) <= tower.getRange()) {
 						tower.shoot(e);
+						shots.add(new Shot(y, x, e.getPositionY(), e.getPositionX()));
 						break;
 					}
 				}
@@ -139,21 +141,24 @@ public class TowerDefense {
 				tower.countCooldown(deltaTime);
 			}
 		}
+		return shots;
 	}
 
 	/**
 	 * Update game state by deltaTime seconds.
 	 *
 	 * @param deltaTime		amount of time
+	 *
+	 * @return list of shots taken by towers
 	 */
-	public void update(double deltaTime) {
+	public List<Shot> update(double deltaTime) {
 		spawnEnemies(deltaTime);
 
 		moveEnemies(deltaTime);
 
-		checkTowerTargets(deltaTime);
-
 		checkEnemyPositionsAndHealths();
+
+		return checkTowerTargets(deltaTime);
 	}
 
 	/**
