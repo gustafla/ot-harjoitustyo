@@ -205,6 +205,10 @@ public class TowerDefenseUi extends Application {
 		canvas.setOnMouseMoved((MouseEvent event) -> {
 			canvasMouseY = event.getY();
 			canvasMouseX = event.getX();
+			if (towerDefense.isWaveOver()) {
+				gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
+				drawField();
+			}
 		});
 
 		// Set up canvas placingTower mousePressed
