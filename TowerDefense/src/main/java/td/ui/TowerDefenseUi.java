@@ -75,9 +75,9 @@ public class TowerDefenseUi extends Application {
 
 		// Draw towers
 		gc.setFill(Color.BLUE);
-		for (AbstractMap.SimpleEntry<Integer, Integer> coordinates: m.getTowerCoordinates()) {
-			int y = coordinates.getKey() * TILE_SIZE + TILE_SIZE / 2;
-			int x = coordinates.getValue() * TILE_SIZE + TILE_SIZE / 2;
+		for (AbstractMap.SimpleEntry<Double, Double> pos: m.getTowerPositions()) {
+			double y = pos.getKey();
+			double x = pos.getValue();
 			gc.fillPolygon(new double[]{x-5, x, x+5}, new double[]{y+5, y-5, y+5}, 3);
 		}
 

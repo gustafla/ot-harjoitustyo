@@ -262,19 +262,33 @@ public class Field {
 	}
 
 	/**
-	 * Get coordinates of all towers wrapped in a list of AbstractMap Entries.
+	 * Get tower by sub-tile position.
+	 *
+	 * @param y		position y-coordinate
+	 * @param x		position x-coordinate
+	 *
+	 * @return tower if tower exists on matching tile, otherwise null
+	 */
+	public Tower getTowerByPosition(double y, double x) {
+		return getTower((int) (y / tileSize), (int) (x / tileSize));
+	}
+
+	/**
+	 * Get sub-tile coordinates of all towers wrapped in a list of AbstractMap Entries.
 	 *
 	 * @return list of entries where K is y-coordinate and V is x-coordinate
 	 */
-	public List<AbstractMap.SimpleEntry<Integer, Integer>> getTowerCoordinates() {
+	public List<AbstractMap.SimpleEntry<Double, Double>> getTowerPositions() {
 		// This is what you get, Java, when you don't add a tuple- or pair
 		// structure in your standards. No, I'm not using JavaFX Point2D in
 		// non-ui code, or writing my own when it should be implemented in any
 		// modern language standard library.
-		List<AbstractMap.SimpleEntry<Integer, Integer>> list = new ArrayList<>();
+		List<AbstractMap.SimpleEntry<Double, Double>> list = new ArrayList<>();
 		for (Map.Entry<Integer, Map<Integer, Tower>> yEntry: towers.entrySet()) {
 			for (Map.Entry<Integer, Tower> xEntry: yEntry.getValue().entrySet()) {
-				list.add(new AbstractMap.SimpleEntry<>(yEntry.getKey(), xEntry.getKey()));
+				list.add(new AbstractMap.SimpleEntry<>(
+							yEntry.getKey() * tileSize + tileSize / 2,
+							xEntry.getKey() * tileSize + tileSize / 2));
 			}
 		}
 		return list;

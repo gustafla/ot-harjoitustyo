@@ -3,6 +3,7 @@ package td.domain;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Iterator;
+import java.util.AbstractMap;
 
 /**
  * This class encapsulates a Tower Defense game's mechanics.
@@ -15,7 +16,7 @@ public class TowerDefense {
 	private List<Enemy> enemies;
 	private int lastPurchasePrice;
 
-	private final int TOWER_PRICE = 10;
+	private final int towerPrice = 10;
 
 	/**
 	 * Constructs a new TowerDefense.
@@ -27,6 +28,7 @@ public class TowerDefense {
 		this.health = 1000;
 		this.field = field;
 		this.enemies = new ArrayList<>(100);
+		this.lastPurchasePrice = 0;
 
 		Enemy firstEnemyType = new Enemy(
 				field.getSpawnPositionY(),
@@ -34,8 +36,6 @@ public class TowerDefense {
 				10, // health,
 				40.); // speed
 		this.wave = new Wave(firstEnemyType, 0);
-
-		this.lastPurchasePrice = 0;
 	}
 
 	public int getMoney() {
@@ -103,6 +103,44 @@ public class TowerDefense {
 		}
 	}
 
+	private void checkEnemyPositionsAndHealths() {
+		Iterator<Enemy> it = enemies.iterator();
+		while (it.hasNext()) {
+			Enemy e = it.next();
+			if (field.isPositionAtBase(e.getPositionY(), e.getPositionX())) {
+				it.remove();
+				health--;
+			} else if (e.getHealth() <= 0) {
+				it.remove();
+			}
+		}
+	}
+
+	private double dist(double y1, double x1, double y2, double x2) {
+		double y = y1 - y2;
+		double x = x1 - x2;
+		return Math.sqrt(y * y + x * x);
+	}
+
+	private void checkTowerTargets(double deltaTime) {
+		for (AbstractMap.SimpleEntry<Double, Double> pos: field.getTowerPositions()) {
+			double y = pos.getKey();
+			double x = pos.getValue();
+			Tower tower = field.getTowerByPosition(y, x);
+
+			if (tower.canShoot()) {
+				for (Enemy e: enemies) {
+					if (dist(y, x, e.getPositionY(), e.getPositionX()) <= tower.getRange()) {
+						tower.shoot(e);
+						break;
+					}
+				}
+			} else {
+				tower.countCooldown(deltaTime);
+			}
+		}
+	}
+
 	/**
 	 * Update game state by deltaTime seconds.
 	 *
@@ -113,15 +151,9 @@ public class TowerDefense {
 
 		moveEnemies(deltaTime);
 
-		// check for enemies who have reached the base
-		Iterator<Enemy> it = enemies.iterator();
-		while (it.hasNext()) {
-			Enemy e = it.next();
-			if (field.isPositionAtBase(e.getPositionY(), e.getPositionX())) {
-				it.remove();
-				health--;
-			}
-		}
+		checkTowerTargets(deltaTime);
+
+		checkEnemyPositionsAndHealths();
 	}
 
 	/**
@@ -130,11 +162,11 @@ public class TowerDefense {
 	 * @return a new tower, or null if there isn't enough money
 	 */
 	public Tower buyTower() {
-		if (money < TOWER_PRICE) {
+		if (money < towerPrice) {
 			return null;
 		}
-		lastPurchasePrice = TOWER_PRICE;
-		money -= TOWER_PRICE;
+		lastPurchasePrice = towerPrice;
+		money -= towerPrice;
 		return new Tower(60, 5, 0.8);
 	}
 

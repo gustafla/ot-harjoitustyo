@@ -56,7 +56,7 @@ public class Tower {
 	 */
 	public void shoot(Enemy enemy) {
 		if (canShoot()) {
-			cooldownNow += cooldown;
+			cooldownNow = cooldown;
 			enemy.takeDamage(power);
 		}
 	}
