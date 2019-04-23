@@ -106,8 +106,11 @@ public class TowerDefenseUi extends Application {
 	}
 
 	private void drawEnemies() {
-		gc.setFill(Color.RED);
 		for (Enemy enemy: towerDefense.getEnemies()) {
+			gc.setFill(Color.rgb(
+						255,
+						(int) ((1. - (enemy.getHealth() / enemy.getMaxHealth())) * 255),
+						0));
 			gc.fillOval(
 					enemy.getPositionX() - 5,
 					enemy.getPositionY() - 5,
