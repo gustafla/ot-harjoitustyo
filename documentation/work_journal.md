@@ -14,5 +14,6 @@
 | --04-16 | 1      | Arkkitehtuurikuvauksen päivitys, releasen luominen |
 | --04-18 | 5      | Javadoc kaikille domain-luokille, tornien piirtäminen |
 | --04-19 | 2      | Tornien osto, tornit ampuu vihollisia |
+| --04-23 | 4      | Hienosäätöä, arkkitehtuuridokumentaatio ja käyttöohje, 0.2 version julkaisu |
 
-Summa: 27 tuntia
+Summa: 31 tuntia
