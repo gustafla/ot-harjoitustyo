@@ -24,8 +24,8 @@ public class TowerDefense {
 	 * @param field		the field on which to play
 	 */
 	public TowerDefense(Field field) {
-		this.money = 1000;
-		this.health = 1000;
+		this.money = 40;
+		this.health = 50;
 		this.field = field;
 		this.enemies = new ArrayList<>(100);
 		this.lastPurchasePrice = 0;
@@ -65,7 +65,13 @@ public class TowerDefense {
 	 * Start next wave.
 	 */
 	public void nextWave() {
-		wave.upgrade(wave.getEnemyType(), wave.getEnemyCount() + 10);
+		Enemy oldEnemy = wave.getEnemyType();
+		Enemy nextEnemy = new Enemy(
+				oldEnemy.getPositionY(),
+				oldEnemy.getPositionX(),
+				oldEnemy.getMaxHealth()+2,
+				oldEnemy.getSpeed()+2.);
+		wave.upgrade(nextEnemy, wave.getEnemyCount() + 4);
 	}
 	
 	/**
@@ -112,6 +118,8 @@ public class TowerDefense {
 				health--;
 			} else if (e.getHealth() <= 0) {
 				it.remove();
+				// Reward with money
+				money += 1;
 			}
 		}
 	}

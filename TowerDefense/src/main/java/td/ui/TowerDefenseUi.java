@@ -233,6 +233,7 @@ public class TowerDefenseUi extends Application {
 			canvasMouseY = event.getY();
 			canvasMouseX = event.getX();
 			if (towerDefense.isWaveOver()) {
+				updateLabels();
 				gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
 				drawField();
 			}

@@ -65,6 +65,15 @@ public class Enemy {
 	}
 
 	/**
+	 * Get the enemy's speed.
+	 *
+	 * @return speed
+	 */
+	public double getSpeed() {
+		return speed;
+	}
+
+	/**
 	 * Lower enemy's health, health cannot fall below 0.
 	 *
 	 * @param amount	amount of health to remove
