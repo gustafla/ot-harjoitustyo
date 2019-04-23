@@ -5,6 +5,8 @@ jossa toteutan torninpuolustuspelin.
 
 ## Dokumentaatio
 
+[Käyttöohje](documentation/manual.md)
+
 [Vaatimusmäärittely](documentation/requirements.md)
 
 [Arkkitehtuurikuvaus](documentation/architecture.md)
@@ -12,6 +14,8 @@ jossa toteutan torninpuolustuspelin.
 [Työaikakirjanpito](documentation/work_journal.md)
 
 ## Julkaisut
+
+[Viikko 6](../../releases/tag/v0.2)
 
 [Viikko 5](../../releases/tag/v0.1)
 
@@ -35,6 +39,11 @@ Suoritettavan Java Archiven (.jar -tiedoston) voi generoida komennolla
 Testit suoritetaan komennolla `mvn test` ja testikattavuusraportin saa tehtyä
 komennolla `mvn jacoco:report` jonka tulossivut luodaan hakemistoon
 target/site/jacoco.
+
+## JavaDoc
+
+JavaDoc -dokumentaatiosivuston voi luoda komennolla `mvn javadoc:javadoc`.
+JavaDoc-sivut löytyvät hakemistosta target/site/apidocs.
 
 ## Checkstyle
 
