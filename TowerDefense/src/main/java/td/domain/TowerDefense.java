@@ -69,8 +69,8 @@ public class TowerDefense {
 		Enemy nextEnemy = new Enemy(
 				oldEnemy.getPositionY(),
 				oldEnemy.getPositionX(),
-				oldEnemy.getMaxHealth()+2,
-				oldEnemy.getSpeed()+2.);
+				oldEnemy.getMaxHealth() + 2,
+				oldEnemy.getSpeed() + 2.);
 		wave.upgrade(nextEnemy, wave.getEnemyCount() + 4);
 	}
 	
