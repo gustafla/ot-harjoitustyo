@@ -4,16 +4,14 @@ import java.util.AbstractMap;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.io.FileOutputStream;
-import java.io.FileInputStream;
-import java.io.ObjectOutputStream;
-import java.io.ObjectInputStream;
+import java.io.IOException;
 import td.domain.TowerDefense;
 import td.domain.Field;
 import td.domain.Tile;
 import td.domain.Enemy;
 import td.domain.Tower;
 import td.domain.Shot;
+import td.dao.TowerDefenseFileDao;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
@@ -34,6 +32,7 @@ public class TowerDefenseUi extends Application {
 	private final double SHOT_FADE_TIME = 1.;
 	
 	private TowerDefense towerDefense;
+	private TowerDefenseFileDao dao;
 
 	private List<Shot> shots;
 
@@ -135,13 +134,18 @@ public class TowerDefenseUi extends Application {
 	@Override
 	public void init() {
 		shots = new ArrayList<>();
-		Field field = new Field(
-				CANVAS_HEIGHT / TILE_SIZE,
-				CANVAS_WIDHT / TILE_SIZE,
-				TILE_SIZE,
-				0);
 
-		towerDefense = new TowerDefense(field);
+		dao = new TowerDefenseFileDao("./save.ser");
+		try {
+			towerDefense = dao.load();
+		} catch (IOException e) {
+			Field field = new Field(
+					CANVAS_HEIGHT / TILE_SIZE,
+					CANVAS_WIDHT / TILE_SIZE,
+					TILE_SIZE,
+					0);
+			towerDefense = new TowerDefense(field);
+		}
 	}
 
 	@Override
@@ -201,8 +205,16 @@ public class TowerDefenseUi extends Application {
 				drawShots();
 
 				if (towerDefense.isWaveOver()) {
+					try {
+						dao.save(towerDefense);
+					} catch (Exception e) {
+						System.out.println("Failed to save game state");
+						e.printStackTrace();
+					}
+
 					waveButton.setText("Next wave");
 					waveButton.setVisible(true);
+
 					stop();
 				}
 

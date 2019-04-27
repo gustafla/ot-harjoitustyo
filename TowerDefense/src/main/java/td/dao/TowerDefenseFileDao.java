@@ -10,11 +10,11 @@ import td.domain.TowerDefense;
 public class TowerDefenseFileDao {
 	private String path;
 
-	TowerDefenseFileDao(String path) {
+	public TowerDefenseFileDao(String path) {
 		this.path = path;
 	}
 
-	public TowerDefense load() {
+	public TowerDefense load() throws IOException {
 		TowerDefense towerDefense = null;
 
 		try {
@@ -23,9 +23,6 @@ public class TowerDefenseFileDao {
 			towerDefense = (TowerDefense) input.readObject();
 			input.close();
 			file.close();
-		} catch (IOException i) {
-			i.printStackTrace();
-			return null;
 		} catch (ClassNotFoundException c) {
 			c.printStackTrace();
 			return null;
@@ -34,17 +31,11 @@ public class TowerDefenseFileDao {
 		return towerDefense;
 	}
 
-	public boolean save(TowerDefense towerDefense) {
-		try {
-			FileOutputStream file = new FileOutputStream(path);
-			ObjectOutputStream output = new ObjectOutputStream(file);
-			output.writeObject(towerDefense);
-			output.close();
-			file.close();
-		} catch (IOException e) {
-			e.printStackTrace();
-			return false;
-		}
-		return true;
+	public void save(TowerDefense towerDefense) throws IOException {
+		FileOutputStream file = new FileOutputStream(path);
+		ObjectOutputStream output = new ObjectOutputStream(file);
+		output.writeObject(towerDefense);
+		output.close();
+		file.close();
 	}
 }

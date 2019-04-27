@@ -1,9 +1,11 @@
 package td.domain;
 
+import java.io.Serializable;
+
 /**
  * This class represents an enemy on the game environment that towers can shoot.
  */
-public class Enemy {
+public class Enemy implements Serializable {
 	private double positionY;
 	private double positionX;
 	private double maxHealth;
