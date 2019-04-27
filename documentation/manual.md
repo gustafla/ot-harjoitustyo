@@ -41,3 +41,8 @@ Tornit puollustavat vaaleanvihreää ruutua eli tukikohtaa vihollisilta.
 
 Kun kaikki viholliset ovat kadonneet ruudulta, voit jo aloittaa seuraavan
 aallon. Kannattaa muistaa ostaa lisää torneja aina kun voi.
+
+## Tallentaminen
+
+Peli tallentaa jokasen hyökkäysaallon loputtua, ja lataa automaattisesti
+käynnistäessä jos tiedosto "save.ser" löytyy
