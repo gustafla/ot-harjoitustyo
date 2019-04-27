@@ -15,7 +15,7 @@ estävät vihollisjoukkojen hyökkäyksen tukikohtaan.
 - [x] Perille päässyt vihollinen vahingoittaa tukikohtaa kerran ja katoaa
 - [x] Pelaaja voi ostaa ja sijoittaa tykkejä kentälle
 - [x] Tykit ampuvat vihollisia
-- [ ] Peli päättyy jos tukikohta tuhotaan
+- [x] Peli päättyy jos tukikohta tuhotaan
 
 ## Kehitysideoita
 
