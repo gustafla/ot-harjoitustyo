@@ -4,11 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Iterator;
 import java.util.AbstractMap;
+import java.io.Serializable;
 
 /**
  * This class encapsulates a Tower Defense game's mechanics.
  */
-public class TowerDefense {
+public class TowerDefense implements Serializable {
 	private int money;
 	private int health;
 	private Field field;

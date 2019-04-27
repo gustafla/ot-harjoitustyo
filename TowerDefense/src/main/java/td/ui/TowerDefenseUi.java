@@ -4,6 +4,10 @@ import java.util.AbstractMap;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.io.FileOutputStream;
+import java.io.FileInputStream;
+import java.io.ObjectOutputStream;
+import java.io.ObjectInputStream;
 import td.domain.TowerDefense;
 import td.domain.Field;
 import td.domain.Tile;
@@ -136,6 +140,7 @@ public class TowerDefenseUi extends Application {
 				CANVAS_WIDHT / TILE_SIZE,
 				TILE_SIZE,
 				0);
+
 		towerDefense = new TowerDefense(field);
 	}
 

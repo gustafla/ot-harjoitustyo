@@ -1,10 +1,12 @@
 package td.domain;
 
+import java.io.Serializable;
+
 /**
  * This class represents a wave of multiple enemies which will spawn one by one,
  * that must be beaten by the player's towers.
  */
-public class Wave {
+public class Wave implements Serializable {
 	private int number;
 	private Enemy enemyType;
 	private int enemyCount;

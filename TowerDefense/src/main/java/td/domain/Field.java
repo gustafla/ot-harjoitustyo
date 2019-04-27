@@ -6,12 +6,13 @@ import java.util.ArrayList;
 import java.util.Map;
 import java.util.HashMap;
 import java.util.AbstractMap;
+import java.io.Serializable;
 
 /**
  * This class represents the game environment on which the enemies can walk and
  * towers can be placed on.
  */
-public class Field {
+public class Field implements Serializable {
 	private Tile[][] tiles;
 	private Map<Integer, Map<Integer, Tower>> towers;
 	private int height;
