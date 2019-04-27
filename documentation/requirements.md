@@ -20,7 +20,7 @@ estävät vihollisjoukkojen hyökkäyksen tukikohtaan.
 ## Kehitysideoita
 
 - [ ] Pelin voi laittaa tauolle jolloin pelaaja ei näe mitään eikä voi tehdä mitään
-- [ ] Pelin voi tallentaa tiedostoon ja jatkaa myöhemmin
+- [x] Pelin voi tallentaa tiedostoon ja jatkaa myöhemmin
 	- Vain hyökkäysaaltojen välissä mieluiten
 - [x] Viholliset vahvistuvat ja/tai niiden määrä nousee
 - [ ] Tykkejä voi vahvistaa

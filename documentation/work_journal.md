@@ -15,5 +15,6 @@
 | --04-18 | 5      | Javadoc kaikille domain-luokille, tornien piirtäminen |
 | --04-19 | 2      | Tornien osto, tornit ampuu vihollisia |
 | --04-23 | 4      | Hienosäätöä, arkkitehtuuridokumentaatio ja käyttöohje, 0.2 version julkaisu |
+| --04-27 | 1      | Pelin tilan automaattinen tallentaminen tiedostoon |
 
-Summa: 31 tuntia
+Summa: 32 tuntia
