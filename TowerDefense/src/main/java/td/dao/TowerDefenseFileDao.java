@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.ObjectOutputStream;
 import java.io.ObjectInputStream;
 import java.io.IOException;
+import java.io.File;
 import td.domain.TowerDefense;
 
 public class TowerDefenseFileDao {
@@ -37,5 +38,9 @@ public class TowerDefenseFileDao {
 		output.writeObject(towerDefense);
 		output.close();
 		file.close();
+	}
+
+	public void delete() {
+		new File(path).delete();
 	}
 }

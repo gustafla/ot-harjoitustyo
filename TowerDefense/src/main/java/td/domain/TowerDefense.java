@@ -62,6 +62,10 @@ public class TowerDefense implements Serializable {
 		return enemies.isEmpty() && wave.isSpawningFinished();
 	}
 
+	public boolean isGameOver() {
+		return health <= 0;
+	}
+
 	/**
 	 * Start next wave.
 	 */

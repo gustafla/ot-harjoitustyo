@@ -218,6 +218,13 @@ public class TowerDefenseUi extends Application {
 					stop();
 				}
 
+				if (towerDefense.isGameOver()) {
+					root.setTop(null);
+					root.setCenter(new Label("Game over!"));
+					dao.delete();
+					stop();
+				}
+
 				frames++;
 			}
 		};
