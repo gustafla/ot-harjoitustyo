@@ -25,265 +25,265 @@ import javafx.event.ActionEvent;
 
 public class TowerDefenseUi extends Application {
 
-	private final double NS_IN_SEC = 1000000000.0;
-	private final int CANVAS_WIDHT = 800;
-	private final int CANVAS_HEIGHT = 600;
-	private final int TILE_SIZE = 20;
-	private final double SHOT_FADE_TIME = 1.;
-	
-	private TowerDefense towerDefense;
-	private TowerDefenseFileDao dao;
+    private final double NS_IN_SEC = 1000000000.0;
+    private final int CANVAS_WIDHT = 800;
+    private final int CANVAS_HEIGHT = 600;
+    private final int TILE_SIZE = 20;
+    private final double SHOT_FADE_TIME = 1.;
 
-	private List<Shot> shots;
+    private TowerDefense towerDefense;
+    private TowerDefenseFileDao dao;
 
-	private Label moneyLabel;
-	private Label waveLabel;
-	private Label healthLabel;
-	private Button waveButton;
-	private Button towerButton;
-	private Tower placingTower;
+    private List<Shot> shots;
 
-	private double canvasMouseY;
-	private double canvasMouseX;
+    private Label moneyLabel;
+    private Label waveLabel;
+    private Label healthLabel;
+    private Button waveButton;
+    private Button towerButton;
+    private Tower placingTower;
 
-	private Canvas canvas;
-	private GraphicsContext gc;
+    private double canvasMouseY;
+    private double canvasMouseX;
 
-	private void updateLabels() {
-		moneyLabel.setText("Money: " + towerDefense.getMoney());
-		waveLabel.setText("Wave: " + towerDefense.getWaveNumber());
-		healthLabel.setText("Health: " + towerDefense.getHealth());
-	}
+    private Canvas canvas;
+    private GraphicsContext gc;
 
-	private void updateTowerButtonText() {
-		if (placingTower == null) {
-			towerButton.setText("Buy tower");
-		} else {
-			towerButton.setText("Cancel buying");
-		}
-	}
+    private void updateLabels() {
+        moneyLabel.setText("Money: " + towerDefense.getMoney());
+        waveLabel.setText("Wave: " + towerDefense.getWaveNumber());
+        healthLabel.setText("Health: " + towerDefense.getHealth());
+    }
 
-	private void drawField() {
-		Field m = towerDefense.getField();
+    private void updateTowerButtonText() {
+        if (placingTower == null) {
+            towerButton.setText("Buy tower");
+        } else {
+            towerButton.setText("Cancel buying");
+        }
+    }
 
-		// Draw roads, spawn and base
-		for (int i = 0; i < m.getHeight(); i++) {
-			for (int j = 0; j < m.getWidth(); j++) {
-				if (i == (int) (m.getSpawnPositionY() / TILE_SIZE)
-						&& j == (int) (m.getSpawnPositionX() / TILE_SIZE)) {
-					gc.setFill(Color.PINK);
-				} else if (i == m.getBaseTileY() && j == m.getBaseTileX()) {
-					gc.setFill(Color.LIGHTGREEN);
-				} else {
-					gc.setFill(Color.LIGHTGRAY);
-				}
-				if (m.getTile(i, j) != Tile.WALL) {
-					gc.fillRect(j * TILE_SIZE, i * TILE_SIZE, TILE_SIZE, TILE_SIZE);
-				}
-			}
-		}
+    private void drawField() {
+        Field m = towerDefense.getField();
 
-		// Draw towers
-		gc.setFill(Color.BLUE);
-		for (AbstractMap.SimpleEntry<Double, Double> pos: m.getTowerPositions()) {
-			double y = pos.getKey();
-			double x = pos.getValue();
-			gc.fillPolygon(new double[]{x-5, x, x+5}, new double[]{y+5, y-5, y+5}, 3);
-		}
+        // Draw roads, spawn and base
+        for (int i = 0; i < m.getHeight(); i++) {
+            for (int j = 0; j < m.getWidth(); j++) {
+                if (i == (int) (m.getSpawnPositionY() / TILE_SIZE)
+                        && j == (int) (m.getSpawnPositionX() / TILE_SIZE)) {
+                    gc.setFill(Color.PINK);
+                } else if (i == m.getBaseTileY() && j == m.getBaseTileX()) {
+                    gc.setFill(Color.LIGHTGREEN);
+                } else {
+                    gc.setFill(Color.LIGHTGRAY);
+                }
+                if (m.getTile(i, j) != Tile.WALL) {
+                    gc.fillRect(j * TILE_SIZE, i * TILE_SIZE, TILE_SIZE, TILE_SIZE);
+                }
+            }
+        }
 
-		// Draw tower mouseOver
-		if (placingTower != null) {
-			if (towerDefense.getField().isPositionFree(canvasMouseY, canvasMouseX)) {
-				gc.setFill(Color.rgb(0, 255, 0, 0.4));
-			} else {
-				gc.setFill(Color.rgb(255, 0, 0, 0.4));
-			}
-			double tileMidX = (int) (canvasMouseX / TILE_SIZE) * TILE_SIZE + TILE_SIZE / 2;
-			double tileMidY = (int) (canvasMouseY / TILE_SIZE) * TILE_SIZE + TILE_SIZE / 2;
-			gc.fillOval(
-					tileMidX - placingTower.getRange(),
-					tileMidY - placingTower.getRange(),
-					placingTower.getRange() * 2,
-					placingTower.getRange() * 2);
-		}
-	}
+        // Draw towers
+        gc.setFill(Color.BLUE);
+        for (AbstractMap.SimpleEntry<Double, Double> pos: m.getTowerPositions()) {
+            double y = pos.getKey();
+            double x = pos.getValue();
+            gc.fillPolygon(new double[]{x-5, x, x+5}, new double[]{y+5, y-5, y+5}, 3);
+        }
 
-	private void drawEnemies() {
-		for (Enemy enemy: towerDefense.getEnemies()) {
-			gc.setFill(Color.rgb(
-						255,
-						(int) ((1. - (enemy.getHealth() / enemy.getMaxHealth())) * 255),
-						0));
-			gc.fillOval(
-					enemy.getPositionX() - 5,
-					enemy.getPositionY() - 5,
-					10,
-					10);
-		}
-	}
+        // Draw tower mouseOver
+        if (placingTower != null) {
+            if (towerDefense.getField().isPositionFree(canvasMouseY, canvasMouseX)) {
+                gc.setFill(Color.rgb(0, 255, 0, 0.4));
+            } else {
+                gc.setFill(Color.rgb(255, 0, 0, 0.4));
+            }
+            double tileMidX = (int) (canvasMouseX / TILE_SIZE) * TILE_SIZE + TILE_SIZE / 2;
+            double tileMidY = (int) (canvasMouseY / TILE_SIZE) * TILE_SIZE + TILE_SIZE / 2;
+            gc.fillOval(
+                    tileMidX - placingTower.getRange(),
+                    tileMidY - placingTower.getRange(),
+                    placingTower.getRange() * 2,
+                    placingTower.getRange() * 2);
+        }
+    }
 
-	private void drawShots() {
-		gc.setLineWidth(3);
-		for (Shot shot: shots) {
-			double timeLeft = (SHOT_FADE_TIME - shot.getTime()) / SHOT_FADE_TIME;
-			gc.setStroke(Color.rgb(255, 255, 0, timeLeft));
-			gc.strokeLine(shot.getX1(), shot.getY1(), shot.getX2(), shot.getY2());
-		}
-	}
+    private void drawEnemies() {
+        for (Enemy enemy: towerDefense.getEnemies()) {
+            gc.setFill(Color.rgb(
+                        255,
+                        (int) ((1. - (enemy.getHealth() / enemy.getMaxHealth())) * 255),
+                        0));
+            gc.fillOval(
+                    enemy.getPositionX() - 5,
+                    enemy.getPositionY() - 5,
+                    10,
+                    10);
+        }
+    }
 
-	@Override
-	public void init() {
-		shots = new ArrayList<>();
+    private void drawShots() {
+        gc.setLineWidth(3);
+        for (Shot shot: shots) {
+            double timeLeft = (SHOT_FADE_TIME - shot.getTime()) / SHOT_FADE_TIME;
+            gc.setStroke(Color.rgb(255, 255, 0, timeLeft));
+            gc.strokeLine(shot.getX1(), shot.getY1(), shot.getX2(), shot.getY2());
+        }
+    }
 
-		dao = new TowerDefenseFileDao("./save.ser");
-		try {
-			towerDefense = dao.load();
-		} catch (IOException e) {
-			Field field = new Field(
-					CANVAS_HEIGHT / TILE_SIZE,
-					CANVAS_WIDHT / TILE_SIZE,
-					TILE_SIZE,
-					0);
-			towerDefense = new TowerDefense(field);
-		}
-	}
+    @Override
+    public void init() {
+        shots = new ArrayList<>();
 
-	@Override
-	public void start(Stage primaryStage) {
-		// Set up stage and main BorderPane
-		primaryStage.setTitle("Tower Defense");
-		BorderPane root = new BorderPane();
+        dao = new TowerDefenseFileDao("./save.ser");
+        try {
+            towerDefense = dao.load();
+        } catch (IOException e) {
+            Field field = new Field(
+                    CANVAS_HEIGHT / TILE_SIZE,
+                    CANVAS_WIDHT / TILE_SIZE,
+                    TILE_SIZE,
+                    0);
+            towerDefense = new TowerDefense(field);
+        }
+    }
 
-		// Set up top UI labels
-		HBox top = new HBox(16);
-		moneyLabel = new Label();
-		waveLabel = new Label();
-		healthLabel = new Label();
-		top.getChildren().addAll(moneyLabel, waveLabel, healthLabel);
-		root.setTop(top);
-		updateLabels();
+    @Override
+    public void start(Stage primaryStage) {
+        // Set up stage and main BorderPane
+        primaryStage.setTitle("Tower Defense");
+        BorderPane root = new BorderPane();
 
-		// Set up the canvas
-		canvas = new Canvas(CANVAS_WIDHT, CANVAS_HEIGHT);
-		gc = canvas.getGraphicsContext2D();
-		root.setCenter(canvas);
+        // Set up top UI labels
+        HBox top = new HBox(16);
+        moneyLabel = new Label();
+        waveLabel = new Label();
+        healthLabel = new Label();
+        top.getChildren().addAll(moneyLabel, waveLabel, healthLabel);
+        root.setTop(top);
+        updateLabels();
 
-		// Set up the combined graphics and game logic loop
-		AnimationTimer at = new AnimationTimer() {
-			long frames = 0;
-			final long FPS_INTERVAL_NS = (long)(2 * NS_IN_SEC);
-			long lastFramecountTimeNs = System.nanoTime();
-			long lastTimeNs = System.nanoTime();
+        // Set up the canvas
+        canvas = new Canvas(CANVAS_WIDHT, CANVAS_HEIGHT);
+        gc = canvas.getGraphicsContext2D();
+        root.setCenter(canvas);
 
-			public void handle(long currentTimeNs) {
-				double deltaTime = (currentTimeNs - lastTimeNs) / NS_IN_SEC;
-				lastTimeNs = currentTimeNs;
+        // Set up the combined graphics and game logic loop
+        AnimationTimer at = new AnimationTimer() {
+            long frames = 0;
+            final long FPS_INTERVAL_NS = (long)(2 * NS_IN_SEC);
+            long lastFramecountTimeNs = System.nanoTime();
+            long lastTimeNs = System.nanoTime();
 
-				if (currentTimeNs - lastFramecountTimeNs > FPS_INTERVAL_NS) {
-					System.out.println("Average framerate "
-							+ frames / (FPS_INTERVAL_NS / NS_IN_SEC));
-					frames = 0;
-					lastFramecountTimeNs = currentTimeNs;
-				}
+            public void handle(long currentTimeNs) {
+                double deltaTime = (currentTimeNs - lastTimeNs) / NS_IN_SEC;
+                lastTimeNs = currentTimeNs;
 
-				shots.addAll(towerDefense.update(deltaTime));
-				
-				Iterator<Shot> it = shots.iterator();
-				while (it.hasNext()) {
-					Shot shot = it.next();
-					shot.updateTime(deltaTime);
-					if (shot.getTime() >= SHOT_FADE_TIME) {
-						it.remove();
-					}
-				}
+                if (currentTimeNs - lastFramecountTimeNs > FPS_INTERVAL_NS) {
+                    System.out.println("Average framerate "
+                            + frames / (FPS_INTERVAL_NS / NS_IN_SEC));
+                    frames = 0;
+                    lastFramecountTimeNs = currentTimeNs;
+                }
 
-				updateLabels();
+                shots.addAll(towerDefense.update(deltaTime));
 
-				gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
-				drawField();
-				drawEnemies();
-				drawShots();
+                Iterator<Shot> it = shots.iterator();
+                while (it.hasNext()) {
+                    Shot shot = it.next();
+                    shot.updateTime(deltaTime);
+                    if (shot.getTime() >= SHOT_FADE_TIME) {
+                        it.remove();
+                    }
+                }
 
-				if (towerDefense.isWaveOver()) {
-					try {
-						dao.save(towerDefense);
-					} catch (Exception e) {
-						System.out.println("Failed to save game state");
-						e.printStackTrace();
-					}
+                updateLabels();
 
-					waveButton.setText("Next wave");
-					waveButton.setVisible(true);
+                gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
+                drawField();
+                drawEnemies();
+                drawShots();
 
-					stop();
-				}
+                if (towerDefense.isWaveOver()) {
+                    try {
+                        dao.save(towerDefense);
+                    } catch (Exception e) {
+                        System.out.println("Failed to save game state");
+                        e.printStackTrace();
+                    }
 
-				if (towerDefense.isGameOver()) {
-					root.setTop(null);
-					root.setCenter(new Label("Game over!"));
-					dao.delete();
-					stop();
-				}
+                    waveButton.setText("Next wave");
+                    waveButton.setVisible(true);
 
-				frames++;
-			}
-		};
+                    stop();
+                }
 
-		// Set up next wave button
-		waveButton = new Button("Start wave");
-		top.getChildren().add(waveButton);
-		waveButton.setOnAction((ActionEvent event) -> {
-			if (towerDefense.isWaveOver()) {
-				towerDefense.nextWave();
-				at.start();
-				waveButton.setVisible(false);
-			}
-		});
+                if (towerDefense.isGameOver()) {
+                    root.setTop(null);
+                    root.setCenter(new Label("Game over!"));
+                    dao.delete();
+                    stop();
+                }
 
-		// Set up tower shop
-		placingTower = null;
-		towerButton = new Button();
-		updateTowerButtonText();
-		top.getChildren().add(towerButton);
-		towerButton.setOnAction((ActionEvent event) -> {
-			if (placingTower == null) {
-				placingTower = towerDefense.buyTower();
-			} else {
-				towerDefense.refundTower();
-				placingTower = null;
-			}
-			updateTowerButtonText();
-		});
+                frames++;
+            }
+        };
 
-		// Set up canvas placingTower mouseMoved
-		canvas.setOnMouseMoved((MouseEvent event) -> {
-			canvasMouseY = event.getY();
-			canvasMouseX = event.getX();
-			if (towerDefense.isWaveOver()) {
-				updateLabels();
-				gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
-				drawField();
-			}
-		});
+        // Set up next wave button
+        waveButton = new Button("Start wave");
+        top.getChildren().add(waveButton);
+        waveButton.setOnAction((ActionEvent event) -> {
+            if (towerDefense.isWaveOver()) {
+                towerDefense.nextWave();
+                at.start();
+                waveButton.setVisible(false);
+            }
+        });
 
-		// Set up canvas placingTower mousePressed
-		canvas.setOnMousePressed((MouseEvent event) -> {
-			if (placingTower != null) {
-				if (towerDefense.getField().addTowerByPosition(
-							event.getY(),
-							event.getX(),
-							placingTower)) {
-					placingTower = null;
-					updateTowerButtonText();
-				}
-			}
-		});
+        // Set up tower shop
+        placingTower = null;
+        towerButton = new Button();
+        updateTowerButtonText();
+        top.getChildren().add(towerButton);
+        towerButton.setOnAction((ActionEvent event) -> {
+            if (placingTower == null) {
+                placingTower = towerDefense.buyTower();
+            } else {
+                towerDefense.refundTower();
+                placingTower = null;
+            }
+            updateTowerButtonText();
+        });
 
-		primaryStage.setScene(new Scene(root));
-		primaryStage.show();
-	}
+        // Set up canvas placingTower mouseMoved
+        canvas.setOnMouseMoved((MouseEvent event) -> {
+            canvasMouseY = event.getY();
+            canvasMouseX = event.getX();
+            if (towerDefense.isWaveOver()) {
+                updateLabels();
+                gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
+                drawField();
+            }
+        });
 
-	public static void main(String[] args) {
-		launch(args);
-	}
+        // Set up canvas placingTower mousePressed
+        canvas.setOnMousePressed((MouseEvent event) -> {
+            if (placingTower != null) {
+                if (towerDefense.getField().addTowerByPosition(
+                            event.getY(),
+                            event.getX(),
+                            placingTower)) {
+                    placingTower = null;
+                    updateTowerButtonText();
+                }
+            }
+        });
+
+        primaryStage.setScene(new Scene(root));
+        primaryStage.show();
+    }
+
+    public static void main(String[] args) {
+        launch(args);
+    }
 }

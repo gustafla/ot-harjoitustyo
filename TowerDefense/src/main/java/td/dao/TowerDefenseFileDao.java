@@ -9,38 +9,40 @@ import java.io.File;
 import td.domain.TowerDefense;
 
 public class TowerDefenseFileDao {
-	private String path;
+    private String path;
 
-	public TowerDefenseFileDao(String path) {
-		this.path = path;
-	}
+    public TowerDefenseFileDao(String path) {
+        this.path = path;
+    }
 
-	public TowerDefense load() throws IOException {
-		TowerDefense towerDefense = null;
+    public TowerDefense load() throws IOException {
+        TowerDefense towerDefense = null;
 
-		try {
-			FileInputStream file = new FileInputStream(path);
-			ObjectInputStream input = new ObjectInputStream(file);
-			towerDefense = (TowerDefense) input.readObject();
-			input.close();
-			file.close();
-		} catch (ClassNotFoundException c) {
-			c.printStackTrace();
-			return null;
-		}
+        try {
+            FileInputStream file = new FileInputStream(path);
+            ObjectInputStream input = new ObjectInputStream(file);
+            towerDefense = (TowerDefense) input.readObject();
+            input.close();
+            file.close();
+        } catch (ClassNotFoundException c) {
+            c.printStackTrace();
+            return null;
+        }
 
-		return towerDefense;
-	}
+        towerDefense.createTransientFields();
 
-	public void save(TowerDefense towerDefense) throws IOException {
-		FileOutputStream file = new FileOutputStream(path);
-		ObjectOutputStream output = new ObjectOutputStream(file);
-		output.writeObject(towerDefense);
-		output.close();
-		file.close();
-	}
+        return towerDefense;
+    }
 
-	public void delete() {
-		new File(path).delete();
-	}
+    public void save(TowerDefense towerDefense) throws IOException {
+        FileOutputStream file = new FileOutputStream(path);
+        ObjectOutputStream output = new ObjectOutputStream(file);
+        output.writeObject(towerDefense);
+        output.close();
+        file.close();
+    }
+
+    public void delete() {
+        new File(path).delete();
+    }
 }
