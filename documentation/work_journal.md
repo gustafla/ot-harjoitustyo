@@ -1,3 +1,4 @@
+<!-- vim: set textwidth=120 colorcolumn=120: -->
 # Työaikakirjanpito
 
 |  päivä  | tunnit | kuvaus |
