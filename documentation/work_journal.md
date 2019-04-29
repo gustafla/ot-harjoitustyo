@@ -17,5 +17,6 @@
 | --04-19 | 2      | Tornien osto, tornit ampuu vihollisia |
 | --04-23 | 4      | Hienosäätöä, arkkitehtuuridokumentaatio ja käyttöohje, 0.2 version julkaisu |
 | --04-27 | 1      | Pelin tilan automaattinen tallentaminen tiedostoon, game over -ruutu |
+| --04-29 | 2      | Tornien refaktorointi |
 
-Summa: 32 tuntia
+Summa: 34 tuntia
