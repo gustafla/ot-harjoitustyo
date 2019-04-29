@@ -16,6 +16,7 @@ public class TowerDefense implements Serializable {
     private Field field;
     private Wave wave;
     private transient List<Enemy> enemies;
+    private List<Tower> towers;
     private int lastPurchasePrice;
 
     private final int towerPrice = 10;
@@ -30,6 +31,7 @@ public class TowerDefense implements Serializable {
         this.health = 50;
         this.field = field;
         this.enemies = new ArrayList<>(100);
+        this.towers = new ArrayList<>();
         this.lastPurchasePrice = 0;
 
         Enemy firstEnemyType = new Enemy(
@@ -96,6 +98,18 @@ public class TowerDefense implements Serializable {
         return enemies;
     }
 
+    public List<Tower> getTowers() {
+        return towers;
+    }
+
+    public boolean addTower(Tower tower) {
+        if (field.getTileByPosition(tower.getPositionY(), tower.getPositionX()) == Tile.WALL) {
+            towers.add(tower);
+            return true;
+        }
+        return false;
+    }
+
     /**
      * This method should only be called by code that deserializes a TowerDefense
      */
@@ -144,21 +158,17 @@ public class TowerDefense implements Serializable {
 
     private List<Shot> checkTowerTargets(double deltaTime) {
         List<Shot> shots = new ArrayList<>();
-        for (AbstractMap.SimpleEntry<Double, Double> pos: field.getTowerPositions()) {
-            double y = pos.getKey();
-            double x = pos.getValue();
-            Tower tower = field.getTowerByPosition(y, x);
-
-            if (tower.canShoot()) {
+        for (Tower t: towers) {
+            if (t.canShoot()) {
                 for (Enemy e: enemies) {
-                    if (dist(y, x, e.getPositionY(), e.getPositionX()) <= tower.getRange()) {
-                        tower.shoot(e);
-                        shots.add(new Shot(y, x, e.getPositionY(), e.getPositionX()));
+                    if (dist(t.getPositionY(), t.getPositionX(), e.getPositionY(), e.getPositionX()) <= t.getRange()) {
+                        t.shoot(e);
+                        shots.add(new Shot(t.getPositionY(), t.getPositionX(), e.getPositionY(), e.getPositionX()));
                         break;
                     }
                 }
             } else {
-                tower.countCooldown(deltaTime);
+                t.countCooldown(deltaTime);
             }
         }
         return shots;
@@ -192,7 +202,7 @@ public class TowerDefense implements Serializable {
         }
         lastPurchasePrice = towerPrice;
         money -= towerPrice;
-        return new Tower(60, 5, 0.8);
+        return new Tower(0, 0, 60, 5, 0.8);
     }
 
     /**

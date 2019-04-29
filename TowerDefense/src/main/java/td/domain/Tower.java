@@ -3,11 +3,12 @@ package td.domain;
 import java.io.Serializable;
 
 /**
- * This class represents a Tower on the game environment that can shoot enemies
- * and be placed on the field by the player.
+ * This class represents a Tower that can shoot enemies and be placed on the field by the player.
  */
 @SuppressWarnings("serial")
 public class Tower implements Serializable {
+    private double positionY;
+    private double positionX;
     private double range;
     private double power;
     private double cooldown;
@@ -16,11 +17,15 @@ public class Tower implements Serializable {
     /**
      * Constructs a new Tower.
      *
+     * @param y         position y
+     * @param x         position x
      * @param range     shooting reach in sub-tile units
      * @param power     amount of damage per shot
      * @param cooldown  delay time between shots in seconds
      */
-    public Tower(double range, double power, double cooldown) {
+    public Tower(double y, double x, double range, double power, double cooldown) {
+        this.positionY = y;
+        this.positionX = x;
         this.range = range;
         this.power = power;
         this.cooldown = cooldown;
@@ -61,5 +66,21 @@ public class Tower implements Serializable {
             cooldownNow = cooldown;
             enemy.takeDamage(power);
         }
+    }
+
+    public double getPositionX() {
+        return positionX;
+    }
+
+    public double getPositionY() {
+        return positionY;
+    }
+
+    public void setPositionX(double positionX) {
+        this.positionX = positionX;
+    }
+
+    public void setPositionY(double positionY) {
+        this.positionY = positionY;
     }
 }

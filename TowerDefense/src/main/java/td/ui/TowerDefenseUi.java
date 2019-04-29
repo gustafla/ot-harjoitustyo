@@ -85,24 +85,21 @@ public class TowerDefenseUi extends Application {
 
         // Draw towers
         gc.setFill(Color.BLUE);
-        for (AbstractMap.SimpleEntry<Double, Double> pos: m.getTowerPositions()) {
-            double y = pos.getKey();
-            double x = pos.getValue();
-            gc.fillPolygon(new double[]{x-5, x, x+5}, new double[]{y+5, y-5, y+5}, 3);
+        for (Tower t: towerDefense.getTowers()) {
+            gc.fillPolygon(new double[]{t.getPositionX()-5, t.getPositionX(), t.getPositionX()+5},
+                    new double[]{t.getPositionY()+5, t.getPositionY()-5, t.getPositionY()+5}, 3);
         }
 
         // Draw tower mouseOver
         if (placingTower != null) {
-            if (towerDefense.getField().isPositionFree(canvasMouseY, canvasMouseX)) {
+            if (towerDefense.getField().getTileByPosition(canvasMouseY, canvasMouseX) == Tile.WALL) {
                 gc.setFill(Color.rgb(0, 255, 0, 0.4));
             } else {
                 gc.setFill(Color.rgb(255, 0, 0, 0.4));
             }
-            double tileMidX = (int) (canvasMouseX / TILE_SIZE) * TILE_SIZE + TILE_SIZE / 2;
-            double tileMidY = (int) (canvasMouseY / TILE_SIZE) * TILE_SIZE + TILE_SIZE / 2;
             gc.fillOval(
-                    tileMidX - placingTower.getRange(),
-                    tileMidY - placingTower.getRange(),
+                    canvasMouseX - placingTower.getRange(),
+                    canvasMouseY - placingTower.getRange(),
                     placingTower.getRange() * 2,
                     placingTower.getRange() * 2);
         }
@@ -269,10 +266,9 @@ public class TowerDefenseUi extends Application {
         // Set up canvas placingTower mousePressed
         canvas.setOnMousePressed((MouseEvent event) -> {
             if (placingTower != null) {
-                if (towerDefense.getField().addTowerByPosition(
-                            event.getY(),
-                            event.getX(),
-                            placingTower)) {
+                placingTower.setPositionY(event.getY());
+                placingTower.setPositionX(event.getX());
+                if (towerDefense.addTower(placingTower)) {
                     placingTower = null;
                     updateTowerButtonText();
                 }
