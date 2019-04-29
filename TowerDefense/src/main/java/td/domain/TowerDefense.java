@@ -5,9 +5,7 @@ import java.util.List;
 import java.util.Iterator;
 import java.io.Serializable;
 
-/**
- * This class encapsulates a Tower Defense game's mechanics.
- */
+/** This class encapsulates a Tower Defense game's mechanics. */
 @SuppressWarnings("serial")
 public class TowerDefense implements Serializable {
     private int money;
@@ -63,6 +61,11 @@ public class TowerDefense implements Serializable {
         return enemies.isEmpty() && wave.isSpawningFinished();
     }
 
+    /**
+     * Checks if base health has reached 0.
+     *
+     * @return true if base health is 0 or under, otherwise false
+     */
     public boolean isGameOver() {
         return health <= 0;
     }
@@ -101,6 +104,13 @@ public class TowerDefense implements Serializable {
         return towers;
     }
 
+    /**
+     * Add tower to game if tower isn't on a road.
+     *
+     * @param tower     the tower to add
+     *
+     * @return true if tower was added, otherwise false
+     */
     public boolean addTower(Tower tower) {
         if (field.getTileByPosition(tower.getPositionY(), tower.getPositionX()) == Tile.WALL) {
             towers.add(tower);
@@ -110,7 +120,7 @@ public class TowerDefense implements Serializable {
     }
 
     /**
-     * This method should only be called by code that deserializes a TowerDefense
+     * This method should only be called by code that deserializes a TowerDefense.
      */
     public void createTransientFields() {
         enemies = new ArrayList<>();

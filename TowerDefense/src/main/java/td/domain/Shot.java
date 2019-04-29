@@ -1,5 +1,6 @@
 package td.domain;
 
+/** This class stores the coordinates and time elapsed of shots taken by towers (needed for rendering). */
 public class Shot {
     private double y1;
     private double x1;
@@ -7,6 +8,14 @@ public class Shot {
     private double x2;
     private double time;
 
+    /**
+     * Constructs a new Shot.
+     *
+     * @param y1    first point's y-coordinate
+     * @param x1    first point's x-coordinate
+     * @param y2    second point's y-coordinate
+     * @param x2    second point's x-coordinate
+     */
     public Shot(double y1, double x1, double y2, double x2) {
         this.y1 = y1;
         this.x1 = x1;
@@ -31,6 +40,11 @@ public class Shot {
         return x2;
     }
 
+    /**
+     * Update timer.
+     *
+     * @param deltaTime     time in seconds to update the timer by
+     */
     public void updateTime(double deltaTime) {
         time += deltaTime;
     }

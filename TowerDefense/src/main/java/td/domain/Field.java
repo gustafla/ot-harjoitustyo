@@ -3,9 +3,7 @@ package td.domain;
 import java.lang.IllegalArgumentException;
 import java.io.Serializable;
 
-/**
- * This class represents the game environment on which the enemies can walk and towers can be placed on.
- */
+/** This class represents the game environment on which the enemies can walk and towers can be placed on. */
 @SuppressWarnings("serial")
 public class Field implements Serializable {
     private Tile[][] tiles;
