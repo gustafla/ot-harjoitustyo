@@ -2,11 +2,6 @@ package td.domain;
 
 import java.lang.IllegalArgumentException;
 import java.io.Serializable;
-import java.util.List;
-import java.util.ArrayList;
-import java.util.Map;
-import java.util.HashMap;
-import java.util.AbstractMap;
 
 /**
  * This class represents the game environment on which the enemies can walk and towers can be placed on.
