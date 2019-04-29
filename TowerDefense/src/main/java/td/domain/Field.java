@@ -12,6 +12,7 @@ import java.io.Serializable;
  * This class represents the game environment on which the enemies can walk and
  * towers can be placed on.
  */
+@SuppressWarnings("serial")
 public class Field implements Serializable {
 	private Tile[][] tiles;
 	private Map<Integer, Map<Integer, Tower>> towers;

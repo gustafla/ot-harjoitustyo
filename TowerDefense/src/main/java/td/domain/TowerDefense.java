@@ -9,6 +9,7 @@ import java.io.Serializable;
 /**
  * This class encapsulates a Tower Defense game's mechanics.
  */
+@SuppressWarnings("serial")
 public class TowerDefense implements Serializable {
 	private int money;
 	private int health;

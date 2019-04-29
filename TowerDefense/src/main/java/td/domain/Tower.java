@@ -6,6 +6,7 @@ import java.io.Serializable;
  * This class represents a Tower on the game environment that can shoot enemies
  * and be placed on the field by the player.
  */
+@SuppressWarnings("serial")
 public class Tower implements Serializable {
 	private double range;
 	private double power;

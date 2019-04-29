@@ -5,6 +5,7 @@ import java.io.Serializable;
 /**
  * This class represents an enemy on the game environment that towers can shoot.
  */
+@SuppressWarnings("serial")
 public class Enemy implements Serializable {
 	private double positionY;
 	private double positionX;
