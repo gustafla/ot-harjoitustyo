@@ -22,7 +22,7 @@ public class TowerDefenseFileDao {
     }
 
     /**
-     * Try to load a TowerDefense object from file.
+     * Try to read a TowerDefense object from file.
      *
      * @return  the loaded TowerDefense
      *
