@@ -25,12 +25,10 @@ jossa toteutan torninpuolustuspelin.
 
 ## Kääntäminen ja paketointi
 
-Projekti ei toimi Java 8 -versiolla koska Mavenin repositorysta ei saa vanhempia
-JavaFX versioita kuin 11.
-OpenJDK 8:n kanssa en ole onnistunut saamaan mitään JavaFX:ää toimimaan.
-Archin java-openjfx kaatuu johonkin "no toolkit found" exceptioniin,
-ja Gentoolla ei edes ole JavaFX -paketteja.
-JavaFX 11 vaatii Java 11 -yhteensopivan kehitysympäristön.
+OpenJFX 11 jota projekti käyttää vaatii Java version 10 tai uudemman.
+Voit mahdollisesti poistaa Open JavaFX:n riippuvuuksista pom.xml-tiedostosta
+jolloin projekti saattaa kääntyä Java 8 -JDK:lla kunhan OpenJFX 8 on asennettu
+tai JDK on Oraclen.
 
 Kääntäminen tapahtuu komennolla `mvn compile` ja projektin pääluokan voi
 halutessaan suorittaa komennolla `mvn exec:java`.
