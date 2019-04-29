@@ -15,9 +15,13 @@ jossa toteutan torninpuolustuspelin.
 
 ## Julkaisut
 
-[Viikko 6](../../releases/tag/v0.2)
+[1.1](../../releases/tag/v1.1)
 
-[Viikko 5](../../releases/tag/v0.1)
+[1.0](../../releases/tag/v1.0)
+
+[Viikko 6 \(0.2\)](../../releases/tag/v0.2)
+
+[Viikko 5 \(0.1\)](../../releases/tag/v0.1)
 
 ## Kääntäminen ja paketointi
 
