@@ -1,6 +1,6 @@
 package td.domain;
 
-/** This class stores the coordinates and time elapsed of shots taken by towers (needed for rendering). */
+/** Stores the coordinates and time elapsed of shots taken by towers (needed for rendering). */
 public class Shot {
     private double y1;
     private double x1;

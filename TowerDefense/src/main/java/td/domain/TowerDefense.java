@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Iterator;
 import java.io.Serializable;
 
-/** This class encapsulates a Tower Defense game's mechanics. */
+/** Encapsulates a Tower Defense game's mechanics. */
 @SuppressWarnings("serial")
 public class TowerDefense implements Serializable {
     private int money;

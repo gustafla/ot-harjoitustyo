@@ -1,5 +1,7 @@
 package td.domain;
 
+import java.util.List;
+import java.util.ArrayList;
 import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
@@ -43,7 +45,7 @@ public class TowerDefenseTest {
     public void enemiesGetSpawned() {
         td.nextWave();
         for (int i = 0; i < 100; i++) {
-            td.update(1./60.);
+            td.update(1./30.);
         }
         assertFalse(td.getEnemies().isEmpty());
     }
@@ -66,5 +68,28 @@ public class TowerDefenseTest {
         }
         assertTrue(td.getEnemies().isEmpty());
         assertTrue(td.getHealth() < healthBefore);
+    }
+
+    @Test(timeout=1000)
+    public void towersShootEnemies() {
+        int initialHealth = td.getHealth();
+        List<Shot> shots = new ArrayList<>();
+
+        Tower[] towers = {
+            new Tower(625, 10, 20, 20, 0.4),
+            new Tower(625, 20, 20, 20, 0.4),
+            new Tower(625, 30, 20, 20, 0.4),
+        };
+        for (Tower t: towers) {
+            assertTrue(td.addTower(t));
+        }
+
+        td.nextWave();
+        while(!td.isWaveOver()) {
+            shots.addAll(td.update(1./30.));
+        }
+
+        assertFalse(shots.isEmpty());
+        assertEquals(initialHealth, td.getHealth());
     }
 }

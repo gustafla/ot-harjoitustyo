@@ -3,7 +3,7 @@ package td.domain;
 import java.io.Serializable;
 
 /**
- * This class represents a Tower that can shoot enemies and be placed on the field by the player.
+ * A Tower that can shoot enemies and be placed on the field by the player.
  */
 @SuppressWarnings("serial")
 public class Tower implements Serializable {
