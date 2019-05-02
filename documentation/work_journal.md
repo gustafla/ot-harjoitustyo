@@ -18,5 +18,6 @@
 | --04-23 | 4      | Hienosäätöä, arkkitehtuuridokumentaatio ja käyttöohje, 0.2 version julkaisu |
 | --04-27 | 1      | Pelin tilan automaattinen tallentaminen tiedostoon, game over -ruutu |
 | --04-29 | 3      | Tornien refaktorointi, lisää javadocia |
+| --05-02 | 0.5    | Vähän testejä |
 
-Summa: 35 tuntia
+Summa: 35.5 tuntia
