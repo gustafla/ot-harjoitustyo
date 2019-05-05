@@ -19,5 +19,6 @@
 | --04-27 | 1      | Pelin tilan automaattinen tallentaminen tiedostoon, game over -ruutu |
 | --04-29 | 3      | Tornien refaktorointi, lisää javadocia |
 | --05-02 | 0.5    | Vähän testejä |
+| --05-05 | 0.5    | Testausdokumentti |
 
-Summa: 35.5 tuntia
+Summa: 36 tuntia
