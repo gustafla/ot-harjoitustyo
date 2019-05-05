@@ -11,6 +11,8 @@ jossa toteutan torninpuolustuspelin.
 
 [Arkkitehtuurikuvaus](documentation/architecture.md)
 
+[Testausdokumentti](documentation/tests.md)
+
 [Työaikakirjanpito](documentation/work_journal.md)
 
 ## Julkaisut
